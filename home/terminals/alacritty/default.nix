@@ -13,7 +13,7 @@
           x = 10;
           y = 5;
         };
-	opacity = 0.9;
+	opacity = 0.7;
       };
 
       scrolling = {
@@ -33,7 +33,7 @@
       colors = {
         # Default colors
         primary = {
-	  background = "#181818";
+	  background = "#282828";
 	  foreground = "0xd5c4a1";
         };
         cursor = {

@@ -22,8 +22,15 @@
    themechanger
    pistol
    ctpv
+   godot_4
  ];
 
+
+  programs.git = {
+    enable = true;
+    userName  = "0xravy";
+    userEmail = "0xravy@gamil.com";
+  };
 
   home.stateVersion = "23.11";
 
