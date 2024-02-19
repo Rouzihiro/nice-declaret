@@ -1,1 +1,1 @@
-# dotnix
+# nix-dotfiles
