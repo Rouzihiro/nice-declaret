@@ -26,7 +26,7 @@ in
 			expireDuplicatesFirst = true;
 			extended = true;
 			ignoreDups = true;
-			path = ".config/zsh/.zsh_history";
+			path = "~/.config/zsh/.zsh_history";
 			save = 10000;
 			share = true;
 		};

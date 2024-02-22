@@ -21,7 +21,7 @@
       };
 
       font = {
-        size = 13;
+        size = 10;
       };
 
       mouse.bindings = [
@@ -43,7 +43,7 @@
 
         # Normal colors
         normal = {
-	  black =   "0x1d2021";
+	  black =   "0x848484";
 	  red =     "0xfb4934";
 	  green =   "0xb8bb26";
 	  yellow =  "0xfabd2f";
@@ -54,7 +54,7 @@
         };
         # Bright colors
         bright = {
-	  black =   "0x1d2021";
+	  black =   "0x848484";
 	  red =     "0xfb4934";
 	  green =   "0xb8bb26";
 	  yellow =  "0xfabd2f";

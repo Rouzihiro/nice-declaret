@@ -1,39 +1,38 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  home.username = "ravy";
-  home.homeDirectory = "/home/ravy";
+    home.username = "ravy";
+    home.homeDirectory = "/home/ravy";
 
-  imports = [
-	#./wm/wayland
-  	./shells
-  	./editors
-	./themes
-	./terminals
-  ];
-
-
-  # Packages that should be installed to the user profile.
- home.packages = with pkgs; [
-   neofetch
-   vesktop
-   lazygit
-   bat
-   themechanger
-   pistol
-   ctpv
-   godot_4
- ];
+    imports = [
+        ./wm
+        ./shells
+        ./editors
+        ./themes
+        ./terminals
+        ./fonts
+    ];
 
 
-  programs.git = {
-    enable = true;
-    userName  = "0xravy";
-    userEmail = "0xravy@gamil.com";
-  };
+    home.packages = with pkgs; [
+        neofetch
+        vesktop
+        lazygit
+        bat
+        themechanger
+        pistol
+        ctpv
+        godot_4
+        cava
+    ];
 
-  home.stateVersion = "23.11";
+    programs.git = {
+        enable = true;
+        userName  = "0xravy";
+        userEmail = "0xravy@gamil.com";
+    };
 
-  # Let home Manager install and manage itself.
-  programs.home-manager.enable = true;
+    home.stateVersion = "23.11";
+
+    programs.home-manager.enable = true;
 }
