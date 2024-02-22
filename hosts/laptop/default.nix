@@ -5,6 +5,7 @@
     imports = [
         ./hardware-configuration.nix
         ./../../system/hardware
+        ./../../system/vm
     ];
 
     boot.loader.systemd-boot.enable = true;
@@ -82,10 +83,6 @@
     # -----------------------------------------
 
 
-    virtualisation.libvirtd.enable = true;
-    programs.dconf.enable = true; # virt-manager requires dconf to remember settings
-
-
     environment.variables = {
         SUDO_EDITOR = "nvim";
         SYSTEMD_EDITOR = "nvim";
@@ -95,7 +92,6 @@
 
     environment.systemPackages = with pkgs; [
         home-manager
-        virt-manager
 
         # browsers
         firefox
