@@ -340,7 +340,7 @@ XF86MonBrightnessDown
             "module/cava" = {
                 type = "custom/script";
                 tail = "true";
-                exec = "./cava.sh";
+                exec = "/home/ravy/dotnix/home/wm/xorg/bspwm/cava.sh";
                 # exec = cava -p $HOME/.config/polybar/cava.ini
                 # format = hello
                 format-font = "5";
