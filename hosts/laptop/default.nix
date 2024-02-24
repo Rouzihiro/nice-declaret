@@ -128,6 +128,10 @@
 
         #--- bun
         bun
+
+       #--- python
+       python3
+       python311Packages.pip
     ];
 
     # ZRAM SWAP

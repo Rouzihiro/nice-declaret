@@ -246,9 +246,233 @@ XF86MonBrightnessDown
         '';
     };
 		
+        
+    services.polybar = {
+        enable = true;
+        script = "polybar bar &";
+
+        config = {
+            "colors" = {
+                background = "#00000000";
+                background-alt = "#1A000000";
+                foreground = "#70ebdbb2";
+                foreground-active = "#fbf1c7";
+                foreground-occupied = "#ebdbb2";
+                foreground-dimmed = "#fbf1c7";
+                primary = "#fbf1c7";
+                secondary = "#8ABEB7";
+                alert = "#a89984";
+                disabled = "#665c54";
+            };
+
+            "bar/top" = {
+                type = "internal/bspwm";
+                width = "100%";
+                height = "9pt";
+                radius = "0";
+                wm-restack= "bspwm";
+                monitor = "\${env:MONITOR}";
+                offset-x = "0";
+                offset-y = "0";
+                bottom = "true";
+                label-monitor = "%name%";
+                label-focused = "%name%";
+                # dpi = 96
+                background = "\${colors.background}";
+                foreground = "\${colors.foreground}";
+                line-size = "2pt";
+                border-size = "2pt";
+                border-color = "#00000000";
+                padding-left = "0";
+                padding-right = "1";
+                module-margin = "1";
+                separator = "|";
+                separator-foreground = "\${colors.disabled}";
+                font-0 = "Monaspace Krypton:size=9:style=Bold;2";
+                font-1 = "Jetbrains Mono:size=9:style=Bold;2";
+                font-2 = "CaskaydiaCove Nerd Font:size=9:style=Bold;2";
+                modules-left = "xworkspaces bsplayout2 xwindow";
+                modules-right = "cava pulseaudio xkeyboard memory cpu battery date";
+                cursor-click = "pointer";
+                cursor-scroll = "ns-resize";
+                # enable-ipc = true
+            };
+
+            "module/xworkspaces" = {
+                type = "internal/xworkspaces";
+                label-active = "%name%";
+                label-active-background = "\${colors.background-alt}";
+                label-active-underline= "\${colors.primary}";
+                label-active-padding = "2";
+                label-active-foreground = "\${colors.foreground-active}";
+                label-occupied = "%name%";
+                label-occupied-padding = "2";
+                label-occupied-foreground = "\${colors.foreground-occupied}";
+                label-urgent = "%name%";
+                # label-urgent-background = ${colors.alert}
+                label-urgent-padding = "2";
+                label-empty = "%name%";
+                label-empty-foreground = "\${colors.disabled}";
+                label-empty-padding = "2";
+            };
+
+            "module/bsplayout2" = { 
+                type = "custom/script";
+                exec = "bspc query -T -d | grep -q '\"userLayout\":\"monocle\"' && echo M || echo \"\"";
+                interval = "1";
+            };
+
+            "module/xwindow" = {
+                type = "internal/xwindow";
+                label = "%title:0:60:...%";
+                label-foreground = "\${colors.foreground-dimmed}";
+            };
+
+            "module/filesystem" = {
+                type = "internal/fs";
+                interval = "25";
+                mount-0 = "/";
+                label-mounted = "%{F#F0C674}%mountpoint%%{F-} %percentage_used%%";
+                label-unmounted = "%mountpoint% not mounted";
+                label-unmounted-foreground = "\${colors.disabled}";
+            };
+
+            "module/cava" = {
+                type = "custom/script";
+                tail = "true";
+                exec = "./cava.sh";
+                # exec = cava -p $HOME/.config/polybar/cava.ini
+                # format = hello
+                format-font = "5";
+                label = "%output%";
+            };
+
+            "module/pulseaudio" = {
+                type = "internal/pulseaudio";
+                format-volume-prefix = "\"VOL \"";
+                format-volume-prefix-foreground = "\${colors.primary}";
+                format-volume = "<label-volume>";
+                label-volume = "%percentage%%";
+                label-muted = "muted";
+                label-muted-foreground = "\${colors.disabled}";
+            };
+
+            "module/xkeyboard" = {
+                type = "internal/xkeyboard";
+                blacklist-0 = "num lock";
+                label-layout = "%layout%";
+                label-layout-foreground = "\${colors.primary}";
+                label-indicator-padding = "2";
+                label-indicator-margin = "1";
+                label-indicator-foreground = "\${colors.background}";
+                label-indicator-background = "\${colors.secondary}";
+            };
+
+            "module/memory" = {
+                type = "internal/memory";
+                interval = "2";
+                format-prefix = "\"RAM \"";
+                format-prefix-foreground = "\${colors.primary}";
+                label = "%percentage_used:2%%";
+            };
+
+            "module/cpu" = {
+                type = "internal/cpu";
+                interval = "2";
+                format-prefix = "\"CPU \"";
+                format-prefix-foreground = "\${colors.primary}";
+                label = "%percentage:2%%";
+            };
+
+            "network-base" = {
+                type = "internal/network";
+                interval = "5";
+                format-connected = "<label-connected>";
+                format-disconnected = "<label-disconnected>";
+                label-disconnected = "%{F#F0C674}%ifname%%{F#707880} disconnected";
+            };
+            
+            "module/wlan" = {
+                "inherit" = "network-base";
+                interface-type = "wireless";
+                label-connected = "%{F#F0C674}%ifname%%{F-} %essid% %local_ip%";
+            };
+
+            "module/eth" = {
+                "inherit" = "network-base";
+                interface-type = "wired";
+                label-connected = "%{F#F0C674}%ifname%%{F-} %local_ip%";
+            };
+
+            "module/date" = {
+                type = "internal/date";
+                interval = "1";
+                date = "%I:%M %p";
+                date-alt = "%Y/%m/%d %H:%M:%S %p";
+                label = "%date%";
+                label-foreground = "\${colors.primary}";
+            };
+
+            "module/battery" = {
+                type = "internal/battery";
+                format-charging-foreground = "\${colors.primary}";
+                format-discharging-foreground = "\${colors.primary}";
+                format-full-foreground = "\${colors.primary}";
+                full-at = "99";
+                low-at = "5";
+                battery = "BAT0";
+                adapter = "ADP1";
+                poll-interval = "5";
+                format-charging = "<animation-charging>  <label-charging>";
+                format-discharging = "<ramp-capacity>  <label-discharging>";
+                format-full =  "<ramp-capacity>  <label-full>";
+                label-charging = "Charging %percentage%%";
+                label-discharging = "Discharging %percentage%%";
+                label-low = "BATTERY LOW";
+
+                ramp-capacity-0 = "<U+F244>";
+                ramp-capacity-1 = "<U+F243>";
+                ramp-capacity-2 = "<U+F242>";
+                ramp-capacity-3 = "<U+F241>";
+                ramp-capacity-4 = "<U+F240>";
+
+                bar-capacity-width = "10";
+
+                animation-charging-0 = "<U+F244>";
+                animation-charging-1 = "<U+F243>";
+                animation-charging-2 = "<U+F242>";
+                animation-charging-3 = "<U+F241>";
+                animation-charging-4 = "<U+F240>";
+                animation-charging-framerate = "750";
+
+                animation-discharging-0 = "<U+F240>";
+                animation-discharging-1 = "<U+F241>";
+                animation-discharging-2 = "<U+F242>";
+                animation-discharging-3 = "<U+F243>";
+                animation-discharging-4 = "<U+F244>";
+                animation-discharging-framerate = "500";
+
+                animation-low-0 = "!";
+                #animation-low-1 =
+                animation-low-framerate = "200";
+            };
+
+            "settings" = {
+                screenchange-reload = "true";
+                pseudo-transparency = "true";
+                compositing-background = "sourc";
+                compositing-foreground = "sourc";
+                compositing-overline = "sourc";
+                compositing-underline = "sourc";
+                compositing-border = "sourc";
+            };
+
+        };
+    };
+
+
 
 	home.packages = with pkgs; [
-		polybar
 		picom
 		nitrogen
 		xorg.xrandr
