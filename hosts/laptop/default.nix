@@ -125,6 +125,8 @@
     xfce.thunar
     gnumake
     ripgrep
+    colorpicker
+    xclip
 
     #-- C/C++
     gcc

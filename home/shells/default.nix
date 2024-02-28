@@ -3,6 +3,7 @@
 let
 
 myAliases = {
+    t="tmux";
     ls="exa --icons";
     lt="exa --icons --tree";
     la="exa -a -l --icons";
@@ -31,23 +32,23 @@ in
 			share = true;
 		};
 
-	        oh-my-zsh = {
-	        	enable = true;
-			plugins = [ 
-				"git"
-				"sudo"
-				"terraform"
-				"systemadmin"
-				"vi-mode"
-			];
-	        	theme = "miloshadzic";
-	        };
+        oh-my-zsh = {
+            enable = true;
+            plugins = [ 
+                "git"
+                "sudo"
+                "terraform"
+                "systemadmin"
+                "vi-mode"
+            ];
+            theme = "miloshadzic";
+        };
 
-	        zplug = {
-	        	enable = true;
-	        	plugins = [
-	        		{ name = "zsh-users/zsh-autosuggestions"; } 
-	        	];
-	        };
+        zplug = {
+            enable = true;
+            plugins = [
+                { name = "zsh-users/zsh-autosuggestions"; } 
+            ];
+        };
 	};
 }
