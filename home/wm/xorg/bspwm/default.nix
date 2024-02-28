@@ -33,7 +33,7 @@ bspc monitor eDP-1 -d VI VII VIII IX X
 
 # CUSTOM
 bspc config focused_border_color  "#928374"
-bspc config normal_border_color  "#1B1B1B"
+bspc config normal_border_color  "#282828"
 bspc config border_width         $border
 bspc config window_gap           $gap
 bspc config split_ratio          0
@@ -77,7 +77,7 @@ killall bspswallow
 fipgrep -f /home/ravy/dotnix/home/wm/xorg/bspwm/swallow || /home/ravy/dotnix/home/wm/xorg/bspwm/bspswallow &
         '';
     };
-    
+
     services.sxhkd = {
         enable = true;
         package = pkgs.sxhkd;
@@ -241,12 +241,12 @@ XF86AudioMute
 XF86MonBrightnessUp
 	brightnessctl set 5%+
 
-XF86MonBrightnessDown	
+XF86MonBrightnessDown
 	brightnessctl set 5%-
         '';
     };
-		
-        
+
+
     services.polybar = {
         enable = true;
         script = "polybar bar &";
@@ -274,7 +274,7 @@ XF86MonBrightnessDown
                 monitor = "\${env:MONITOR}";
                 offset-x = "0";
                 offset-y = "0";
-                bottom = "true";
+                #bottom = "true";
                 label-monitor = "%name%";
                 label-focused = "%name%";
                 # dpi = 96
@@ -316,7 +316,7 @@ XF86MonBrightnessDown
                 label-empty-padding = "2";
             };
 
-            "module/bsplayout2" = { 
+            "module/bsplayout2" = {
                 type = "custom/script";
                 exec = "bspc query -T -d | grep -q '\"userLayout\":\"monocle\"' && echo M || echo \"\"";
                 interval = "1";
@@ -391,7 +391,7 @@ XF86MonBrightnessDown
                 format-disconnected = "<label-disconnected>";
                 label-disconnected = "%{F#F0C674}%ifname%%{F#707880} disconnected";
             };
-            
+
             "module/wlan" = {
                 "inherit" = "network-base";
                 interface-type = "wireless";
@@ -481,5 +481,6 @@ XF86MonBrightnessDown
 		xorg.xinit
 		feh
 		killall
+        flameshot
 	];
 }

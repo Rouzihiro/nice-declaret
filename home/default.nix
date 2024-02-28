@@ -1,38 +1,42 @@
-{ config, pkgs, lib, ... }:
-
 {
-    home.username = "ravy";
-    home.homeDirectory = "/home/ravy";
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  home.username = "ravy";
+  home.homeDirectory = "/home/ravy";
 
-    imports = [
-        ./wm
-        ./shells
-        ./editors
-        ./themes
-        ./terminals
-        ./fonts
-    ];
+  imports = [
+    ./wm
+    ./shells
+    ./editors
+    ./themes
+    ./terminals
+    ./fonts
+  ];
 
+  home.packages = with pkgs; [
+    neofetch
+    vesktop
+    lazygit
+    bat
+    themechanger
+    pistol
+    ctpv
+    godot_4
+    cava
+    inputs.Neve.packages.${system}.default
+  ];
 
-    home.packages = with pkgs; [
-        neofetch
-        vesktop
-        lazygit
-        bat
-        themechanger
-        pistol
-        ctpv
-        godot_4
-        cava
-    ];
+  programs.git = {
+    enable = true;
+    userName = "0xravy";
+    userEmail = "0xravy@gamil.com";
+  };
 
-    programs.git = {
-        enable = true;
-        userName  = "0xravy";
-        userEmail = "0xravy@gamil.com";
-    };
+  home.stateVersion = "23.11";
 
-    home.stateVersion = "23.11";
-
-    programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 }

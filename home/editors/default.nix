@@ -1,10 +1,10 @@
-{ config, pkgs, ...  }:
-
 {
-
-
-	imports = [
-		./nixvim
-	];
-
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # ./nixvim
+    # ./neovim
+  ];
 }

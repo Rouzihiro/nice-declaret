@@ -9,11 +9,11 @@
       window = {
         decorations = "none";
         dynamic_padding = false;
-        padding = {
-          x = 10;
-          y = 5;
-        };
-	opacity = 0.7;
+       #padding = {
+       #  x = 10;
+       #  y = 5;
+       #};
+        opacity = 0.95;
       };
 
       scrolling = {
@@ -33,7 +33,7 @@
       colors = {
         # Default colors
         primary = {
-	  background = "#282828";
+	  background = "#1d2021";
 	  foreground = "0xd5c4a1";
         };
         cursor = {
