@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  userSettings,
+  ...
+}: let
   myAliases = {
     t = "tmux";
     ls = "exa --icons";
@@ -25,7 +29,7 @@ in {
       expireDuplicatesFirst = true;
       extended = true;
       ignoreDups = true;
-      path = "/home/ravy/.config/zsh/.zsh_history";
+      path = "/home/${userSettings.username}/.config/zsh/.zsh_history";
       save = 10000;
       share = true;
     };

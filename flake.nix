@@ -2,6 +2,7 @@
   description = "Flake of Ravy";
 
   outputs = inputs @ {
+    self,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
@@ -13,7 +14,7 @@
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {
       system = "x86_64-linux"; # system arch
-      hostname = "laptop"; # hostname
+      hostname = "nixos"; # hostname
       profile = "personal"; # select a profile defined from my profiles directory
       timezone = "Asia/Riyadh"; # select timezone
       locale = "en_US.UTF-8"; # select locale
@@ -27,7 +28,7 @@
       username = "ravy"; # username
       name = "Ravy";
       email = "0xravy@gmail.com"; # email (used for certain configurations)
-      dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
+      dotfilesDir = "~/dotnix"; # absolute path of the local repo
       theme = "gruvbox"; # selcted theme from my themes directory (./themes/)
       wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       # window manager type (hyprland or x11) translator
@@ -41,12 +42,13 @@
       font = "Intel One Mono"; # Selected font
       #fontPkg = pkgs.intel-one-mono; # Font package
       editor = "nvim"; # Default editor;
+      spawnEditor = "nvim";
     };
 
     lib = nixpkgs-unstable.lib;
   in {
     nixosConfigurations = {
-      systemSettings.hostname = lib.nixosSystem {
+      nixos = lib.nixosSystem {
         system = systemSettings.system;
 
         specialArgs = {
@@ -57,7 +59,11 @@
 
         modules = [
           # configuration.nix file
-          ./profiles/personal
+          (
+            ./.
+            + "/profiles"
+            + ("/" + systemSettings.profile)
+          )
 
           # home-manager settings
           home-manager.nixosModules.home-manager

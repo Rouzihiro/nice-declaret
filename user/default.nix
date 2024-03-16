@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  userSettings,
   ...
 }: {
   home.username = "ravy";
@@ -32,12 +33,20 @@
     obs-studio
     obsidian
     gromit-mpx
+    qutebrowser
   ];
 
   programs.git = {
     enable = true;
-    userName = "0xravy";
-    userEmail = "0xravy@gamil.com";
+    userName = "0x${userSettings.username}";
+    userEmail = userSettings.email;
+  };
+
+  home.sessionVariables = {
+    EDITOR = userSettings.editor;
+    SPAWNEDITOR = userSettings.spawnEditor;
+    TERM = userSettings.term;
+    BROWSER = userSettings.browser;
   };
 
   home.stateVersion = "23.11";
