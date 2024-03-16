@@ -2,6 +2,8 @@
   config,
   lib,
   pkgs,
+  systemSettings,
+  userSettings,
   ...
 }: {
   imports = [
@@ -13,18 +15,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  # Networking
+  networking.hostName = systemSettings.hostname; # Define your hostname.
+  networking.networkmanager.enable = true; # Use networkmanager
 
   nixpkgs.config.allowUnfree = true;
-  # nix.package = pkgs.nix;
 
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions =
-      lib.optionalString (config.nix.package == pkgs.nixFlakes)
-      "experimental-features = nix-command flakes";
 
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
     settings = {
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
@@ -32,17 +34,29 @@
   };
 
   programs.zsh.enable = true;
-  users.users.ravy = {
-    shell = pkgs.zsh;
-    home = "/home/ravy";
-    initialPassword = "1235";
-    description = "ravy man";
+
+  users.users.${userSettings.username} = {
     isNormalUser = true;
+    description = userSettings.name;
     extraGroups = ["wheel" "networkmanager"];
+    initialPassword = "1235";
+    shell = pkgs.zsh;
   };
 
-  time.timeZone = "Asia/Riyadh";
-  i18n.defaultLocale = "en_US.UTF-8";
+  # Timezone and locale
+  time.timeZone = systemSettings.timezone; # time zone
+  i18n.defaultLocale = systemSettings.locale;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = systemSettings.locale;
+    LC_IDENTIFICATION = systemSettings.locale;
+    LC_MEASUREMENT = systemSettings.locale;
+    LC_MONETARY = systemSettings.locale;
+    LC_NAME = systemSettings.locale;
+    LC_NUMERIC = systemSettings.locale;
+    LC_PAPER = systemSettings.locale;
+    LC_TELEPHONE = systemSettings.locale;
+    LC_TIME = systemSettings.locale;
+  };
 
   services.openssh.enable = true;
   hardware.opengl.enable = true;
@@ -121,7 +135,6 @@
     nitrogen
     zip
     unzip
-    vscodium
     xfce.thunar
     gnumake
     ripgrep
@@ -146,6 +159,7 @@
 
     #-- nodejs
     nodejs_21
+    nodePackages.live-server
 
     #--- python
     python3
@@ -153,7 +167,7 @@
 
     #--- dotnet
     dotnet-sdk_8
-    omnisharp-roslyn
+    vimPlugins.omnisharp-extended-lsp-nvim
   ];
 
   # ZRAM SWAP

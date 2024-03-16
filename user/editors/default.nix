@@ -6,5 +6,6 @@
   imports = [
     # ./nixvim
     # ./neovim
+    ./vscode
   ];
 }

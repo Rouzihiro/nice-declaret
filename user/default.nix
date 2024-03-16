@@ -26,8 +26,12 @@
     pistol
     ctpv
     godot_4
+    blender
     cava
     inputs.Neve.packages.${system}.default
+    obs-studio
+    obsidian
+    gromit-mpx
   ];
 
   programs.git = {
