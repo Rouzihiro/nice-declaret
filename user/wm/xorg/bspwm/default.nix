@@ -294,7 +294,7 @@
         font-1 = "Jetbrains Mono:size=9:style=Bold;2";
         font-2 = "CaskaydiaCove Nerd Font:size=9:style=Bold;2";
         modules-left = "xworkspaces bsplayout2 xwindow";
-        modules-right = "cava pulseaudio xkeyboard memory cpu battery date";
+        modules-right = "cava pulseaudio pipewire xkeyboard filesystem memory cpu battery date";
         cursor-click = "pointer";
         cursor-scroll = "ns-resize";
         # enable-ipc = true
@@ -334,9 +334,11 @@
         type = "internal/fs";
         interval = "25";
         mount-0 = "/";
-        label-mounted = "%{F#F0C674}%mountpoint%%{F-} %percentage_used%%";
-        label-unmounted = "%mountpoint% not mounted";
+        format-prefix-foreground = "\${colors.primary}";
+        label-mounted = "󰋊 %{F#F0C674}%mountpoint%%{F-} %percentage_used%%";
+        label-unmounted = "󰋊 %mountpoint% not mounted";
         label-unmounted-foreground = "\${colors.disabled}";
+        click-right = "btop";
       };
 
       "module/cava" = {
@@ -351,12 +353,30 @@
 
       "module/pulseaudio" = {
         type = "internal/pulseaudio";
-        format-volume-prefix = "\"VOL \"";
+        # format-volume-prefix = "\"VOL \"";
         format-volume-prefix-foreground = "\${colors.primary}";
-        format-volume = "<label-volume>";
-        label-volume = "%percentage%%";
-        label-muted = "muted";
+        # format-volume = "<label-volume>";
+        # label-volume = "%percentage%%";
+        # label-muted = "muted";
         label-muted-foreground = "\${colors.disabled}";
+
+        use-ui-max = "true";
+        interval = "5";
+        reverse-scroll = "false";
+        format-volume = "<ramp-volume> <label-volume>";
+        label-muted = "🔇 muted";
+        ramp-volume-0 = "🔈";
+        ramp-volume-1 = "🔉";
+        ramp-volume-2 = "🔊";
+        click-right = "pavucontrol";
+      };
+
+      "module/pipewire" = {
+        type = "custom/ipc";
+        label = "%output%";
+        label-font = "1";
+        initial = "5";
+        click-right = "exec pavucontrol &";
       };
 
       "module/xkeyboard" = {
@@ -373,17 +393,19 @@
       "module/memory" = {
         type = "internal/memory";
         interval = "2";
-        format-prefix = "\"RAM \"";
+        format-prefix = "\"󰆩 \"";
         format-prefix-foreground = "\${colors.primary}";
         label = "%percentage_used:2%%";
+        click-right = "btop";
       };
 
       "module/cpu" = {
         type = "internal/cpu";
         interval = "2";
-        format-prefix = "\"CPU \"";
+        format-prefix = "\" \"";
         format-prefix-foreground = "\${colors.primary}";
         label = "%percentage:2%%";
+        click-right = "btop";
       };
 
       "network-base" = {
@@ -432,26 +454,26 @@
         label-discharging = "Discharging %percentage%%";
         label-low = "BATTERY LOW";
 
-        ramp-capacity-0 = "<U+F244>";
-        ramp-capacity-1 = "<U+F243>";
-        ramp-capacity-2 = "<U+F242>";
-        ramp-capacity-3 = "<U+F241>";
-        ramp-capacity-4 = "<U+F240>";
+        ramp-capacity-0 = "";
+        ramp-capacity-1 = "";
+        ramp-capacity-2 = "";
+        ramp-capacity-3 = "";
+        ramp-capacity-4 = "";
 
         bar-capacity-width = "10";
 
-        animation-charging-0 = "<U+F244>";
-        animation-charging-1 = "<U+F243>";
-        animation-charging-2 = "<U+F242>";
-        animation-charging-3 = "<U+F241>";
-        animation-charging-4 = "<U+F240>";
+        animation-charging-0 = "";
+        animation-charging-1 = "";
+        animation-charging-2 = "";
+        animation-charging-3 = "";
+        animation-charging-4 = "";
         animation-charging-framerate = "750";
 
-        animation-discharging-0 = "<U+F240>";
-        animation-discharging-1 = "<U+F241>";
-        animation-discharging-2 = "<U+F242>";
-        animation-discharging-3 = "<U+F243>";
-        animation-discharging-4 = "<U+F244>";
+        animation-discharging-0 = "";
+        animation-discharging-1 = "";
+        animation-discharging-2 = "";
+        animation-discharging-3 = "";
+        animation-discharging-4 = "";
         animation-discharging-framerate = "500";
 
         animation-low-0 = "!";

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  ...
 }: {
   programs.steam = {
     enable = true;
@@ -11,16 +12,5 @@
 
   programs.java.enable = true;
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "steam-run"
-    ];
-
-  programs.steam.package = pkgs.steam.override {
-    withJava = true;
-    withPrimus = true;
-    # extraPkgs = pkgs: [bumblebee glxinfo];
-  };
+  services.flatpak.enable = true;
 }

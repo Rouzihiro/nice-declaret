@@ -21,7 +21,7 @@
       };
 
       font = {
-        size = 5;
+        size = 9;
       };
 
       mouse.bindings = [
