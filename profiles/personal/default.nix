@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ./../../system/hardware
     ./../../system/vm
+    ./../../system/steam
   ];
 
   boot.loader.systemd-boot.enable = true;

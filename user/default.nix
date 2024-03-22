@@ -34,6 +34,7 @@
     obsidian
     gromit-mpx
     qutebrowser
+    telegram-desktop
   ];
 
   programs.git = {

@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  userSettings
+  userSettings,
   ...
 }: {
   xsession.windowManager.bspwm = {
@@ -77,7 +77,7 @@
 
 
       killall bspswallow
-      fipgrep -f /home/${userSettings.username}/dotnix/home/wm/xorg/bspwm/swallow || /home/${userSettings.username}/dotnix/home/wm/xorg/bspwm/bspswallow &
+      fipgrep -f /home/${userSettings.username}/dotnix/user/wm/xorg/bspwm/swallow || /home/${userSettings.username}/dotnix/user/wm/xorg/bspwm/bspswallow &
     '';
   };
 
@@ -342,7 +342,7 @@
       "module/cava" = {
         type = "custom/script";
         tail = "true";
-        exec = "/home/${userSettings.username}/dotnix/home/wm/xorg/bspwm/cava.sh";
+        exec = "/home/${userSettings.username}/dotnix/user/wm/xorg/bspwm/cava.sh";
         # exec = cava -p $HOME/.config/polybar/cava.ini
         # format = hello
         format-font = "5";
