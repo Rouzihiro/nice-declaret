@@ -1,12 +1,14 @@
-{ config, pkgs, ... }:
-
 {
-    xsession.windowManager.i3 = {
-        enable = true;
-    };
+  config,
+  pkgs,
+  ...
+}: {
+  xsession.windowManager.i3 = {
+    enable = true;
+  };
 
-    home.file."./.config/i3" = {
-        source = ./i3-conf;
-        recursive = true;
-    };
+  xdg.configFile."i3blocks/config".source = ./i3-conf/config;
+  home.file.".gdbinit".text = ''
+    set auto-load safe-path /nix/store
+  '';
 }

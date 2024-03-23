@@ -393,7 +393,7 @@
       "module/memory" = {
         type = "internal/memory";
         interval = "2";
-        format-prefix = "\"󰆩 \"";
+        format-prefix = "\"󰆩  \"";
         format-prefix-foreground = "\${colors.primary}";
         label = "%percentage_used:2%%";
         click-right = "btop";
@@ -402,7 +402,7 @@
       "module/cpu" = {
         type = "internal/cpu";
         interval = "2";
-        format-prefix = "\" \"";
+        format-prefix = "\"  \"";
         format-prefix-foreground = "\${colors.primary}";
         label = "%percentage:2%%";
         click-right = "btop";
