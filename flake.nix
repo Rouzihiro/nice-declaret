@@ -27,8 +27,11 @@
     userSettings = rec {
       username = "ravy"; # username
       name = "Ravy";
-      email = "0xravy@gmail.com"; # email (used for certain configurations)
-      dotfilesDir = "~/dotnix"; # absolute path of the local repo
+      github = {
+        name = "0xravy";
+        email = "0xravy@gmail.com"; # email (used for certain configurations)
+      };
+      dotfilesDir = "~/.dotnix"; # absolute path of the local repo
       theme = "gruvbox"; # selcted theme from my themes directory (./themes/)
       wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       # window manager type (hyprland or x11) translator
@@ -59,12 +62,10 @@
 
         modules = [
           # configuration.nix file
-          (
-            ./.
+          (./.
             + "/profiles"
             + ("/" + systemSettings.profile)
-          )
-
+            + "/configuration.nix")
           # home-manager settings
           home-manager.nixosModules.home-manager
           nixvim.nixosModules.nixvim
@@ -73,7 +74,11 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               # home-manager file
-              users.ravy = import ./user;
+              users.${userSettings.username} = import (./.
+                + "/profiles"
+                + ("/" + systemSettings.profile)
+                + "/home.nix");
+
               sharedModules = [
                 inputs.nixvim.homeManagerModules.nixvim
               ];

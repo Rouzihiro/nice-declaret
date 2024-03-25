@@ -21,12 +21,9 @@
 
       sxhkd &
 
-
       polybar &
 
-
       picom &
-
 
 
       # MONITOR
@@ -77,7 +74,7 @@
 
 
       killall bspswallow
-      fipgrep -f /home/${userSettings.username}/dotnix/user/wm/xorg/bspwm/swallow || /home/${userSettings.username}/dotnix/user/wm/xorg/bspwm/bspswallow &
+      fipgrep -f ${config.home.homeDirectory}/.dotnix/user/wm/xorg/bspwm/swallow || ${config.home.homeDirectory}/.dotnix/user/wm/xorg/bspwm/bspswallow &
     '';
   };
 
@@ -85,167 +82,167 @@
     enable = true;
     package = pkgs.sxhkd;
     extraConfig = ''
-      #
-      # wm independent hotkeys
-      #
-      super + shift + o: {equal,minus,o}
-          picom-trans -c -o {+5,-5,100}
+           #
+           # wm independent hotkeys
+           #
+           super + shift + o: {equal,minus,o}
+               picom-trans -c -o {+5,-5,100}
 
-      # browser
-      super + w
-        google-chrome-stable
+           # browser
+           super + w
+      ${userSettings.browser}
 
-      # file manager
-      super + e
-        thunar
+           # file manager
+           super + e
+             thunar
 
-      # terminal emulator
-      super + Return
-      	alacritty
+           # terminal emulator
+           super + Return
+      ${userSettings.term}
 
-      # search rofi
-      super + space
-        rofi -show drun
+           # search rofi
+           super + space
+             rofi -show drun
 
-      # color picker
-      super + z
-          colorpicker --short --one-shot --preview | xsel -b
+           # color picker
+           super + z
+               colorpicker --short --one-shot --preview | xsel -b
 
-      # make sxhkd reload its configuration files:
-      super + Escape
-      	pkill -USR1 -x sxhkd
+           # make sxhkd reload its configuration files:
+           super + Escape
+           	pkill -USR1 -x sxhkd
 
-      super + shift + Escape
-      	pkill -KILL bspwm
-      #
-      # bspwm hotkeys
-      #
+           super + shift + Escape
+           	pkill -KILL bspwm
+           #
+           # bspwm hotkeys
+           #
 
-      # quit/restart bspwm
-      super + alt + {q,r}
-      	bspc {quit,wm -r}
+           # quit/restart bspwm
+           super + alt + {q,r}
+           	bspc {quit,wm -r}
 
-      # close and kill
-      super + {_,shift + }q
-      	bspc node -{c,k}
+           # close and kill
+           super + {_,shift + }q
+           	bspc node -{c,k}
 
-      # alternate between the tiled and monocle layout
-      super + m
-      	bspc desktop -l next
+           # alternate between the tiled and monocle layout
+           super + m
+           	bspc desktop -l next
 
-      # send the newest marked node to the newest preselected node
-      super + y
-      	bspc node newest.marked.local -n newest.!automatic.local
+           # send the newest marked node to the newest preselected node
+           super + y
+           	bspc node newest.marked.local -n newest.!automatic.local
 
-      # swap the current node and the biggest window
-      super + g
-      	bspc node -s biggest.window
+           # swap the current node and the biggest window
+           super + g
+           	bspc node -s biggest.window
 
-      #
-      # state/flags
-      #
+           #
+           # state/flags
+           #
 
-      # set the window state
-      super + {t,shift + t,s,f}
-      	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+           # set the window state
+           super + {t,shift + t,s,f}
+           	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-      # set the node flags
-      super + ctrl + {m,x,y,z}
-      	bspc node -g {marked,locked,sticky,private}
+           # set the node flags
+           super + ctrl + {m,x,y,z}
+           	bspc node -g {marked,locked,sticky,private}
 
-      #
-      # focus/swap
-      #
+           #
+           # focus/swap
+           #
 
-      # focus the node in the given direction
-      super + {_,shift + }{h,j,k,l}
-      	bspc node -{f,s} {west,south,north,east}
+           # focus the node in the given direction
+           super + {_,shift + }{h,j,k,l}
+           	bspc node -{f,s} {west,south,north,east}
 
-      # focus the node for the given path jump
-      super + {p,b,comma,period}
-      	bspc node -f @{parent,brother,first,second}
+           # focus the node for the given path jump
+           super + {p,b,comma,period}
+           	bspc node -f @{parent,brother,first,second}
 
-      # focus the next/previous window in the current desktop
-      super + {_,shift + }c
-      	bspc node -f {next,prev}.local.!hidden.window
+           # focus the next/previous window in the current desktop
+           super + {_,shift + }c
+           	bspc node -f {next,prev}.local.!hidden.window
 
-      # focus the next/previous desktop in the current monitor
-      super + bracket{left,right}
-      	bspc desktop -f {prev,next}.local
+           # focus the next/previous desktop in the current monitor
+           super + bracket{left,right}
+           	bspc desktop -f {prev,next}.local
 
-      # focus the last node/desktop
-      super + {Tab,Tab}
-      	bspc {node,desktop} -f last
+           # focus the last node/desktop
+           super + {Tab,Tab}
+           	bspc {node,desktop} -f last
 
-      # focus the older or newer node in the focus history
-      super + {o,i}
-      	bspc wm -h off; \
-      	bspc node {older,newer} -f; \
-      	bspc wm -h on
-
-
-      super + {_,shift + }{1-9,0}
-      	bspc {desktop -f,node -d} '^{1-9,10}'
-
-      #
-      # preselect
-      #
-
-      # preselect the direction
-      super + shift + {h,j,k,l}
-      	bspc node -p {west,south,north,east}
+           # focus the older or newer node in the focus history
+           super + {o,i}
+           	bspc wm -h off; \
+           	bspc node {older,newer} -f; \
+           	bspc wm -h on
 
 
-      # cancel the preselection for the focused node
-      super + space
-      	bspc node -p cancel
+           super + {_,shift + }{1-9,0}
+           	bspc {desktop -f,node -d} '^{1-9,10}'
 
-      # cancel the preselection for the focused desktop
-      super + ctrl + shift + space
-      	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+           #
+           # preselect
+           #
 
-      #
-      # move/resize
-      #
+           # preselect the direction
+           super + shift + {h,j,k,l}
+           	bspc node -p {west,south,north,east}
 
-      # expand a window by moving one of its side outward
-      ctrl + super + {h,j,k,l}
-      	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-      # contract a window by moving one of its side inward
-      ctrl + super + shift + {h,j,k,l}
-      	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+           # cancel the preselection for the focused node
+           super + space
+           	bspc node -p cancel
 
-      # move a floating window
-      super + {Left,Down,Up,Right}
-      	bspc node -v {-20 0,0 20,0 -20,20 0}
+           # cancel the preselection for the focused desktop
+           super + ctrl + shift + space
+           	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-      ##CUSTOM
+           #
+           # move/resize
+           #
 
-      #printscreen
-      Print
-      	flameshot full -c -p ~/Pictures/Screenshots
+           # expand a window by moving one of its side outward
+           ctrl + super + {h,j,k,l}
+           	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-      Print + shift
-        flameshot gui
+           # contract a window by moving one of its side inward
+           ctrl + super + shift + {h,j,k,l}
+           	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-      #volume control
-      XF86AudioRaiseVolume
-      	amixer set 'Master' 5%+
+           # move a floating window
+           super + {Left,Down,Up,Right}
+           	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-      XF86AudioLowerVolume
-      	amixer set 'Master' 5%-
+           ##CUSTOM
 
-      XF86AudioMute
-      	amixer set Master toggle
+           #printscreen
+           Print
+           	flameshot full -c -p ~/Pictures/Screenshots
 
-      #brightnessctl
+           Print + shift
+             flameshot gui
 
-      XF86MonBrightnessUp
-      	brightnessctl set 5%+
+           #volume control
+           XF86AudioRaiseVolume
+           	amixer set 'Master' 5%+
 
-      XF86MonBrightnessDown
-      	brightnessctl set 5%-
+           XF86AudioLowerVolume
+           	amixer set 'Master' 5%-
+
+           XF86AudioMute
+           	amixer set Master toggle
+
+           #brightnessctl
+
+           XF86MonBrightnessUp
+           	brightnessctl set 5%+
+
+           XF86MonBrightnessDown
+           	brightnessctl set 5%-
     '';
   };
 
@@ -344,7 +341,7 @@
       "module/cava" = {
         type = "custom/script";
         tail = "true";
-        exec = "/home/${userSettings.username}/dotnix/user/wm/xorg/bspwm/cava.sh";
+        exec = "${config.home.homeDirectory}/.dotnix/user/wm/xorg/bspwm/cava.sh";
         # exec = cava -p $HOME/.config/polybar/cava.ini
         # format = hello
         format-font = "5";

@@ -1,6 +1,6 @@
 {
+  config,
   pkgs,
-  userSettings,
   ...
 }: let
   myAliases = {
@@ -13,7 +13,7 @@
     sv = "sudo nvim";
     cat = "bat -p";
     nixreb = "sudo nixos-rebuild switch --flake";
-    nixgar = "sudo nix-collect-garbage -d; sudo nixos-rebuild boot";
+    nixgar = "sudo nix-collect-garbage -d; sudo rm -rf /etc/nixos; sudo cp -r ~/.dotnix /etc/nixos; sudo nixos-rebuild boot";
   };
 in {
   programs.zsh = {
@@ -29,7 +29,7 @@ in {
       expireDuplicatesFirst = true;
       extended = true;
       ignoreDups = true;
-      path = "/home/${userSettings.username}/.config/zsh/.zsh_history";
+      path = "${config.home.homeDirectory}/.config/zsh/.zsh_history";
       save = 10000;
       share = true;
     };
