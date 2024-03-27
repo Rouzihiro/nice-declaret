@@ -12,8 +12,11 @@ in {
   home.homeDirectory = "/home/${userSettings.username}";
 
   imports = [
+    # xorg
     (userDir + /wm/xorg/bspwm)
+    (userDir + /wm/xorg/i3wm)
 
+    # wayland
     (userDir + /wm/wayland)
     (userDir + /wm/wayland/hyprland)
 
@@ -22,6 +25,7 @@ in {
     (userDir + /terminals/alacritty)
 
     (userDir + /shells/zsh.nix)
+    (userDir + /shells/tmux.nix)
 
     (userDir + /themes)
     (userDir + /fonts)
@@ -70,6 +74,7 @@ in {
       XDG_ORG_DIR = "${config.home.homeDirectory}/Org";
       XDG_PODCAST_DIR = "${config.home.homeDirectory}/Media/Podcasts";
       XDG_BOOK_DIR = "${config.home.homeDirectory}/Media/Books";
+      XDG_WALLPAPER_DIR = "${config.home.homeDirectory}/Media/Wallpaper";
     };
   };
 
