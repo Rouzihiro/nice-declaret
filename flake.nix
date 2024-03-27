@@ -4,11 +4,12 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    nixpkgs-unstable,
+    nixpkgs-stable,
     home-manager,
     nixvim,
     flake-utils,
     nixneovimplugins,
+    rust-overlay,
     ...
   }: let
     # ---- SYSTEM SETTINGS ---- #
@@ -48,50 +49,119 @@
       spawnEditor = "nvim";
     };
 
-    lib = nixpkgs-unstable.lib;
+    # create patched nixpkgs
+    nixpkgs-patched = (import nixpkgs {system = systemSettings.system;}).applyPatches {
+      name = "nixpkgs-patched";
+      src = nixpkgs;
+    };
+
+    # configure pkgs
+    pkgs = import nixpkgs-patched {
+      system = systemSettings.system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+      overlays = [rust-overlay.overlays.default];
+    };
+
+    pkgs-stable = import nixpkgs-stable {
+      system = systemSettings.system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+      };
+    };
+
+    # configure lib
+    lib = nixpkgs.lib;
   in {
+    homeConfigurations = {
+      user = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          (./.
+            + "/profiles"
+            + ("/" + systemSettings.profile)
+            + "/home.nix") # load home.nix from selected PROFILE
+          #  inputs.nix-flatpak.homeManagerModules.nix-flatpak # Declarative flatpaks
+        ];
+        extraSpecialArgs = {
+          # pass config variables from above
+          inherit pkgs-stable;
+          inherit systemSettings;
+          inherit userSettings;
+          inherit inputs;
+        };
+      };
+    };
+
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         system = systemSettings.system;
-
-        specialArgs = {
-          inherit inputs;
-          inherit systemSettings;
-          inherit userSettings;
-        };
-
         modules = [
-          # configuration.nix file
           (./.
             + "/profiles"
             + ("/" + systemSettings.profile)
             + "/configuration.nix")
-          # home-manager settings
-          home-manager.nixosModules.home-manager
-          nixvim.nixosModules.nixvim
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              # home-manager file
-              users.${userSettings.username} = import (./.
-                + "/profiles"
-                + ("/" + systemSettings.profile)
-                + "/home.nix");
-
-              sharedModules = [
-                inputs.nixvim.homeManagerModules.nixvim
-              ];
-              extraSpecialArgs = {
-                inherit inputs;
-                inherit systemSettings;
-                inherit userSettings;
-              };
-            };
-          }
-        ];
+        ]; # load configuration.nix from selected PROFILE
+        specialArgs = {
+          # pass config variables from above
+          inherit pkgs-stable;
+          inherit systemSettings;
+          inherit userSettings;
+          inherit inputs;
+        };
       };
     };
+
+    # nixosConfigurations = {
+    #   nixos = lib.nixosSystem {
+    #     inherit pkgs;
+    #     system = systemSettings.system;
+    #
+    #     specialArgs = {
+    #       inherit pkgs-stable;
+    #       inherit inputs;
+    #       inherit systemSettings;
+    #       inherit userSettings;
+    #     };
+    #
+    #     modules = [
+    #       # configuration.nix file
+    #       (./.
+    #         + "/profiles"
+    #         + ("/" + systemSettings.profile)
+    #         + "/configuration.nix")
+    #       # home-manager settings
+    #       home-manager.nixosModules.home-manager
+    #       nixvim.nixosModules.nixvim
+    #       {
+    #         home-manager = {
+    #           useGlobalPkgs = true;
+    #           useUserPackages = true;
+    #           # home-manager file
+    #           users.${userSettings.username} = import (./.
+    #             + "/profiles"
+    #             + ("/" + systemSettings.profile)
+    #             + "/home.nix");
+    #
+    #           sharedModules = [
+    #             inputs.nixvim.homeManagerModules.nixvim
+    #           ];
+    #           extraSpecialArgs = {
+    #             inherit pkgs;
+    #             inherit pkgs-stable;
+    #             inherit inputs;
+    #             inherit systemSettings;
+    #             inherit userSettings;
+    #           };
+    #         };
+    #       }
+    #     ];
+    #   };
+
+    # };
 
     #Starndard Formatting
     #formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
@@ -100,13 +170,12 @@
   inputs = {
     Neve.url = "github:0xravy/Neve";
 
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -114,5 +183,7 @@
 
     flake-utils.url = "github:numtide/flake-utils";
     nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
+
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 }

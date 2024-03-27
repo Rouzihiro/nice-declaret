@@ -11,8 +11,8 @@ in {
   imports = [
     (systemDir + /hardware)
     (systemDir + /packages)
-    (systemDir + /steam)
-    (systemDir + /vm)
+    (systemDir + /app/steam.nix)
+    (systemDir + /app/vm.nix)
 
     (systemDir + /hardware-configuration.nix)
   ];
