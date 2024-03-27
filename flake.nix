@@ -39,7 +39,7 @@
         if (wm == "hyprland")
         then "wayland"
         else "x11";
-      browser = "qutebrowser"; # Default browser; must select one from ./user/app/browser/
+      browser = "firefox"; # Default browser; must select one from ./user/app/browser/
       defaultRoamDir = "personal"; # Default org roam directory relative to ~/Org
       term = "alacritty"; # Default terminal command;
       font = "Intel One Mono"; # Selected font

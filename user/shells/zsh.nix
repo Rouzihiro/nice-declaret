@@ -12,7 +12,7 @@
     v = "nvim";
     sv = "sudo nvim";
     cat = "bat -p";
-    nixreb = "sudo nixos-rebuild switch --flake";
+    nixreb = "sudo nixos-rebuild switch --flake ~/.dotnix";
     nixgar = "sudo nix-collect-garbage -d; sudo rm -rf /etc/nixos; sudo cp -r ~/.dotnix /etc/nixos; sudo nixos-rebuild boot";
   };
 in {
