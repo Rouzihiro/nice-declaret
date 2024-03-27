@@ -73,29 +73,19 @@
       };
     };
 
+    # Systems that can run tests:
+    supportedSystems = ["aarch64-linux" "i686-linux" "x86_64-linux"];
+
+    # Function to generate a set based on supported systems:
+    forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
+
+    # Attribute set of nixpkgs for each system:
+    nixpkgsFor =
+      forAllSystems (system: import inputs.nixpkgs {inherit system;});
+
     # configure lib
     lib = nixpkgs.lib;
   in {
-    homeConfigurations = {
-      user = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          (./.
-            + "/profiles"
-            + ("/" + systemSettings.profile)
-            + "/home.nix") # load home.nix from selected PROFILE
-          #  inputs.nix-flatpak.homeManagerModules.nix-flatpak # Declarative flatpaks
-        ];
-        extraSpecialArgs = {
-          # pass config variables from above
-          inherit pkgs-stable;
-          inherit systemSettings;
-          inherit userSettings;
-          inherit inputs;
-        };
-      };
-    };
-
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         system = systemSettings.system;
@@ -104,6 +94,32 @@
             + "/profiles"
             + ("/" + systemSettings.profile)
             + "/configuration.nix")
+
+          # home-manager settings
+          home-manager.nixosModules.home-manager
+          nixvim.nixosModules.nixvim
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              # home-manager file
+              users.${userSettings.username} = import (./.
+                + "/profiles"
+                + ("/" + systemSettings.profile)
+                + "/home.nix");
+
+              sharedModules = [
+                inputs.nixvim.homeManagerModules.nixvim
+              ];
+              extraSpecialArgs = {
+                inherit pkgs;
+                inherit pkgs-stable;
+                inherit inputs;
+                inherit systemSettings;
+                inherit userSettings;
+              };
+            };
+          }
         ]; # load configuration.nix from selected PROFILE
         specialArgs = {
           # pass config variables from above
@@ -115,56 +131,25 @@
       };
     };
 
-    # nixosConfigurations = {
-    #   nixos = lib.nixosSystem {
-    #     inherit pkgs;
-    #     system = systemSettings.system;
-    #
-    #     specialArgs = {
-    #       inherit pkgs-stable;
-    #       inherit inputs;
-    #       inherit systemSettings;
-    #       inherit userSettings;
-    #     };
-    #
-    #     modules = [
-    #       # configuration.nix file
-    #       (./.
-    #         + "/profiles"
-    #         + ("/" + systemSettings.profile)
-    #         + "/configuration.nix")
-    #       # home-manager settings
-    #       home-manager.nixosModules.home-manager
-    #       nixvim.nixosModules.nixvim
-    #       {
-    #         home-manager = {
-    #           useGlobalPkgs = true;
-    #           useUserPackages = true;
-    #           # home-manager file
-    #           users.${userSettings.username} = import (./.
-    #             + "/profiles"
-    #             + ("/" + systemSettings.profile)
-    #             + "/home.nix");
-    #
-    #           sharedModules = [
-    #             inputs.nixvim.homeManagerModules.nixvim
-    #           ];
-    #           extraSpecialArgs = {
-    #             inherit pkgs;
-    #             inherit pkgs-stable;
-    #             inherit inputs;
-    #             inherit systemSettings;
-    #             inherit userSettings;
-    #           };
-    #         };
-    #       }
-    #     ];
-    #   };
+    packages = forAllSystems (system: let
+      pkgs = nixpkgsFor.${system};
+    in {
+      default = self.packages.${system}.install;
 
-    # };
+      install = pkgs.writeShellApplication {
+        name = "install";
+        runtimeInputs = with pkgs; [git]; # I could make this fancier by adding other deps
+      };
+    });
 
-    #Starndard Formatting
-    #formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+    apps = forAllSystems (system: {
+      default = self.apps.${system}.install;
+
+      install = {
+        type = "app";
+        program = "${self.packages.${system}.install}/bin/install";
+      };
+    });
   };
 
   inputs = {

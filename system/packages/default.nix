@@ -1,62 +1,66 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: {
+  environment.systemPackages = [
     #=======================
-    home-manager
+    pkgs.home-manager
 
     # browsers
-    firefox
-    brave
+    pkgs.brave
+    pkgs-stable.firefox
 
     # myApps
-    neovim
-    lf
-    eza
-    wget
-    kitty
-    alacritty
-    git
-    mpd
-    mpv
-    fuzzel
-    tofi
-    tmux
-    btop
-    nitrogen
-    zip
-    unzip
-    xfce.thunar
-    gnumake
-    ripgrep
-    colorpicker
-    xclip
+    pkgs.neovim
+    pkgs.lf
+    pkgs.eza
+    pkgs.wget
+    pkgs.kitty
+    pkgs.alacritty
+    pkgs.git
+    pkgs.mpd
+    pkgs.mpv
+    pkgs.fuzzel
+    pkgs.tofi
+    pkgs.tmux
+    pkgs.btop
+    pkgs.nitrogen
+    pkgs.zip
+    pkgs.unzip
+    pkgs.xfce.thunar
+    pkgs.gnumake
+    pkgs.ripgrep
+    pkgs.colorpicker
+    pkgs.xclip
 
     #-- C/C++
-    gcc
+    pkgs.gcc
 
     # --- rust
-    rustup
-    rust-analyzer-unwrapped
-    pkg-config
-    glib
-    gobject-introspection
-    gdk-pixbuf
-    pango
-    pangolin
+    pkgs.rustup
+    pkgs.rust-analyzer-unwrapped
+    pkgs.pkg-config
+    pkgs.glib
+    pkgs.gobject-introspection
+    pkgs.gdk-pixbuf
+    pkgs.pango
+    pkgs.pangolin
 
     #--- bun
-    bun
+    pkgs.bun
 
     #-- nodejs
-    nodejs_21
-    nodePackages.live-server
+    pkgs.nodejs_21
+    pkgs.nodePackages.live-server
 
     #--- python
-    python3
-    python311Packages.pip
+    pkgs.python3
+    pkgs.python311Packages.pip
 
     #--- dotnet
-    dotnet-sdk_8
-    vimPlugins.omnisharp-extended-lsp-nvim
+    pkgs.dotnet-sdk_8
+    pkgs.vimPlugins.omnisharp-extended-lsp-nvim
     #=======================
   ];
 }

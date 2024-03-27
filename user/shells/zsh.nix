@@ -19,8 +19,12 @@ in {
   programs.zsh = {
     enable = true;
     initExtra = ''
-      tmux
-      clear
+      PROMPT=" ◉ %U%F{magenta}%n%f%u@%U%F{blue}%m%f%u:%F{yellow}%~%f
+       %F{green}→%f "
+      [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+
+        tmux
+        clear
     '';
     shellAliases = myAliases;
     dotDir = ".config/zsh";
@@ -34,24 +38,17 @@ in {
       share = true;
     };
 
-    initExtra = ''
-    PROMPT=" ◉ %U%F{magenta}%n%f%u@%U%F{blue}%m%f%u:%F{yellow}%~%f
-     %F{green}→%f "
-    RPROMPT="%F{red}▂%f%F{yellow}▄%f%F{green}▆%f%F{cyan}█%f%F{blue}▆%f%F{magenta}▄%f%F{white}▂%f"
-    [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
-    '';
-
-   #oh-my-zsh = {
-   #  enable = true;
-   #  plugins = [
-   #    "git"
-   #    "sudo"
-   #    "terraform"
-   #    "systemadmin"
-   #    "vi-mode"
-   #  ];
-   #  theme = "miloshadzic";
-   #};
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "sudo"
+        "terraform"
+        "systemadmin"
+        "vi-mode"
+      ];
+      theme = "miloshadzic";
+    };
 
     zplug = {
       enable = true;

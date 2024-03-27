@@ -500,5 +500,6 @@
     feh
     killall
     flameshot
+    polybar
   ];
 }
