@@ -1,17 +1,43 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
+    keyMode = "vi";
+    shortcut = "s";
+    prefix = "C-s";
+
+    plugins = [
+      pkgs.tmuxPlugins.cpu
+      {
+        plugin = pkgs.tmuxPlugins.resurrect;
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+      }
+      {
+        plugin = pkgs.tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '60' # minutes
+        '';
+      }
+      {
+        plugin = pkgs.tmuxPlugins.gruvbox;
+        extraConfig = ''
+          set -g @plugin 'egel/tmux-gruvbox'
+          set -g @tmux-gruvbox 'dark' # or 'light'
+        '';
+      }
+
+      {
+        plugin = pkgs.tmuxPlugins.vim-tmux-navigator;
+        extraConfig = ''
+          set -g @plugin 'christoomey/vim-tmux-navigator'
+        '';
+      }
+    ];
+
     extraConfig = ''
       unbind r
-      set -g prefix C-s
 
       # act like vim
-      setw -g mode-keys vi
       bind-key h select-pane -L
       bind-key j select-pane -D
       bind-key k select-pane -U
@@ -25,13 +51,9 @@
 
       # plugins
       set -g @plugin 'tmux-plugins/tpm'
-      set -g @plugin 'christoomey/vim-tmux-navigator'
-      set -g @plugin 'egel/tmux-gruvbox'
-      set -g @tmux-gruvbox 'dark' # or 'light'
       run '~/.config/tmux/plugins/tpm/tpm'
 
       set-option -g pane-border-lines simple
-
     '';
   };
 }
