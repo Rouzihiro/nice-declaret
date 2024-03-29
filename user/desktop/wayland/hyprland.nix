@@ -24,7 +24,7 @@
 
     settings = {
       exec-once = [
-        "swaybg -i Wallpaper/catppuccin.png"
+        "swaybg -i Wallpaper/cat-watching-rain-4k-live_037.png"
         "waybar"
       ];
 
@@ -49,7 +49,7 @@
 
       general = {
         gaps_in = 3;
-        gaps_out = 3;
+        gaps_out = 7;
         border_size = 4;
         bezier = "linear, 0.0, 0.0, 1.0, 1.0";
         "col.active_border" = "rgb(928374) 270deg";
