@@ -6,6 +6,7 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
+    stylix,
     nixvim,
     flake-utils,
     nixneovimplugins,
@@ -32,8 +33,12 @@
         name = "0xravy";
         email = "0xravy@gmail.com"; # email (used for certain configurations)
       };
+      keyboard = {
+        layout = "us, ara";
+        options = "grp:rctrl_rshift_toggle, caps:escape";
+      };
       dotfilesDir = "~/.dotnix"; # absolute path of the local repo
-      theme = "gruvbox"; # selcted theme from my themes directory (./themes/)
+      theme = "gruvbox-dark-hard"; # selcted theme from my themes directory (./themes/)
       wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       # window manager type (hyprland or x11) translator
       wmType =
@@ -114,9 +119,10 @@
               extraSpecialArgs = {
                 inherit pkgs;
                 inherit pkgs-stable;
-                inherit inputs;
                 inherit systemSettings;
                 inherit userSettings;
+                inherit inputs;
+                inherit (inputs) stylix;
               };
             };
           }
@@ -127,6 +133,7 @@
           inherit systemSettings;
           inherit userSettings;
           inherit inputs;
+          inherit (inputs) stylix;
         };
       };
     };
@@ -160,6 +167,8 @@
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    stylix.url = "github:danth/stylix";
 
     nixvim = {
       url = "github:nix-community/nixvim";

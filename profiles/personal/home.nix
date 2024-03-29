@@ -1,9 +1,9 @@
 {
   config,
   pkgs,
-  lib,
   inputs,
   userSettings,
+  stylix,
   ...
 }: let
   userDir = ./../../user;
@@ -12,13 +12,16 @@ in {
   home.homeDirectory = "/home/${userSettings.username}";
 
   imports = [
-    # xorg
-    (userDir + /wm/xorg/bspwm)
-    (userDir + /wm/xorg/i3wm)
+    stylix.homeManagerModules.stylix
 
+    # xorg
+    # (userDir + /wm/xorg/bspwm)
+    # (userDir + /wm/xorg/i3wm)
+    #
     # wayland
-    (userDir + /wm/wayland)
-    (userDir + /wm/wayland/hyprland)
+    (userDir + /desktop/wayland)
+    (userDir + /desktop/wayland/hyprland.nix)
+    (userDir + /desktop/wayland/waybar.nix)
 
     # (userDir + /browsers/firefox)
     (userDir + /editors/vscode)
@@ -29,6 +32,7 @@ in {
 
     (userDir + /themes)
     (userDir + /fonts)
+    (userDir + /style/stylix.nix)
 
     ../hack/tools.nix
   ];
@@ -76,8 +80,8 @@ in {
     };
   };
 
-  xdg.mime.enable = true;
-  xdg.mimeApps.enable = true;
+  # xdg.mime.enable = true;
+  # xdg.mimeApps.enable = true;
 
   programs.git = {
     enable = true;
