@@ -49,7 +49,7 @@
       defaultRoamDir = "personal"; # Default org roam directory relative to ~/Org
       term = "alacritty"; # Default terminal command;
       font = "Intel One Mono"; # Selected font
-      #fontPkg = pkgs.intel-one-mono; # Font package
+      fontPkg = pkgs.intel-one-mono; # Font package
       editor = "nvim"; # Default editor;
       spawnEditor = "nvim";
     };

@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  lib,
   ...
 }: {
   #     gtk.enable = true;
@@ -14,16 +14,15 @@
   #     qt.style.package = pkgs.adwaita-qt;
   #     qt.style.name = "adwaite-dark";
   #
-  #     gtk.cursorTheme.package = pkgs.apple-cursor;
-  #     gtk.cursorTheme.name = "macOS-BigSUr-White";
+  gtk.cursorTheme.package = pkgs.apple-cursor;
+  gtk.cursorTheme.name = "macOS-BigSUr-White";
   # #gtk.cursorTheme.size = 16;
-  #
-  #     gtk.theme.package = pkgs.gruvbox-dark-gtk;
-  #     gtk.theme.name = "gruvbox-dark";
-  #
-  #     gtk.iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
-  #     gtk.iconTheme.name = "oomox-gruvbox-dark";
-  #
+
+  gtk.theme.package = lib.mkDefault pkgs.gruvbox-dark-gtk;
+  gtk.theme.name = lib.mkDefault "gruvbox-dark";
+
+  gtk.iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
+  gtk.iconTheme.name = "oomox-gruvbox-dark";
 
   xdg.configFile."lf/icons".source = ./icons;
   programs.lf = {

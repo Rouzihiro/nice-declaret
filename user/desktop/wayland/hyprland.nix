@@ -11,7 +11,10 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [xdg-desktop-portal-wlr];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xwayland
+    ];
     config.common.default = "*";
   };
 
@@ -21,7 +24,7 @@
 
     settings = {
       exec-once = [
-        "swaybg -i wall/NixOS_1.0.png"
+        "swaybg -i Wallpaper/catppuccin.png"
         "waybar"
       ];
 
@@ -45,8 +48,8 @@
       };
 
       general = {
-        gaps_in = 5;
-        gaps_out = 5;
+        gaps_in = 3;
+        gaps_out = 3;
         border_size = 4;
         bezier = "linear, 0.0, 0.0, 1.0, 1.0";
         "col.active_border" = "rgb(928374) 270deg";

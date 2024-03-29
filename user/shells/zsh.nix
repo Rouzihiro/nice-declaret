@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  userSettings,
   ...
 }: let
   myAliases = {
@@ -12,8 +13,8 @@
     v = "nvim";
     sv = "sudo nvim";
     cat = "bat -p";
-    nixreb = "sudo nixos-rebuild switch --flake ~/.dotnix";
-    nixgar = "sudo nix-collect-garbage -d; sudo rm -rf /etc/nixos; sudo cp -r ~/.dotnix /etc/nixos; sudo nixos-rebuild boot";
+    nixreb = "sudo nixos-rebuild switch --flake ${userSettings.dotfilesDir}";
+    nixgar = "sudo nix-collect-garbage -d; sudo rm -rf /etc/nixos; sudo cp -r ${userSettings.dotfilesDir} /etc/nixos; sudo nixos-rebuild boot";
   };
 in {
   programs.zsh = {

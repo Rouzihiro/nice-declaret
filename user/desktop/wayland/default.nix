@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    waybar
     wireplumber
     eww
     swww
@@ -25,5 +24,11 @@
     wpaperd
     mpvpaper
     swappy
+
+    meson
+    wayland-protocols
+    wayland-utils
+    wl-clipboard
+    wlroots
   ];
 }

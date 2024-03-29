@@ -17,9 +17,9 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 35;
+        height = 25;
         margin = "7 7 3 7";
-        spacing = 2;
+        spacing = 0;
 
         modules-left = ["custom/os" "custom/hyprprofile" "battery" "backlight" "keyboard-state" "pulseaudio" "cpu" "memory"];
         modules-center = ["hyprland/workspaces"];
@@ -154,17 +154,16 @@
             /* `otf-font-awesome` is required to be installed for icons */
             font-family: FontAwesome, ''
       + userSettings.font
-      + ''        ;
+      + ''                ;
 
-                  font-size: 20px;
-              }
-
-              window#waybar {
-                  background-color: #''
+                          font-size: 12px;
+        }
+                          window#waybar {
+                                  background-color: #''
       + config.lib.stylix.colors.base00
       + ''        ;
                   opacity: 0.75;
-                  border-radius: 8px;
+                  border-radius: 0px;
                   color: #''
       + config.lib.stylix.colors.base07
       + ''        ;
@@ -228,7 +227,7 @@
       + ''        ;
               }
 
-              #workspaces button.urgent {
+              #workjspaces button.urgent {
                   color: #''
       + config.lib.stylix.colors.base09
       + ''        ;

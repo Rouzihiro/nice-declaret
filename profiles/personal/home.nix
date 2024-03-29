@@ -55,6 +55,9 @@ in {
     qutebrowser
     telegram-desktop
     whatsapp-for-linux
+
+    # networking
+    networkmanagerapplet
   ];
 
   services.syncthing.enable = true;

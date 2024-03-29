@@ -33,6 +33,7 @@
     pkgs.ripgrep
     pkgs.colorpicker
     pkgs.xclip
+    pkgs.light
 
     #-- C/C++
     pkgs.gcc
