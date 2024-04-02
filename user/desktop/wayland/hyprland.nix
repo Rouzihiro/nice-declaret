@@ -50,14 +50,14 @@
       general = {
         gaps_in = 3;
         gaps_out = 7;
-        border_size = 4;
+        border_size = 3;
         bezier = "linear, 0.0, 0.0, 1.0, 1.0";
-        "col.active_border" = "rgb(928374) 270deg";
+        "col.active_border" = "rgb(FFF5EE) rgba(FFEFD5ee) 45deg";
         "col.inactive_border" = "rgb(282828)";
 
         layout = "dwindle";
 
-        allow_tearing = false;
+        allow_tearing = true;
       };
 
       windowrulev2 = "noborder, onworkspace:1";
@@ -66,7 +66,7 @@
         rounding = 0;
 
         blur = {
-          enabled = false;
+          enabled = true;
           size = 3;
           passes = 1;
         };
