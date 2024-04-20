@@ -1,6 +1,6 @@
 {
   pkgs,
-  userSettings,
+  mySettings,
   ...
 }: {
   # xorg & sddm
@@ -15,7 +15,7 @@
       '';
     };
 
-    xkb.layout = userSettings.keyboard.layout;
-    xkb.options = userSettings.keyboard.options;
+    xkb.layout = mySettings.user.keyboard.layout;
+    xkb.options = mySettings.user.keyboard.options;
   };
 }

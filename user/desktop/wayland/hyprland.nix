@@ -24,8 +24,12 @@
 
     settings = {
       exec-once = [
-        "swaybg -i Wallpaper/cat-watching-rain-4k-live_037.png"
+        # "swaybg -i Wallpaper/cat-watching-rain-4k-live_037.png"
         "waybar"
+      ];
+      exec = [
+        # "mpvpaper '*' -o \"loop\" Wallpaper/cat-watching-rain-4k-live.mp4"
+        "swaybg -i Wallpaper/1672789345_witcher3_2023-01-03_19-24-03.png"
       ];
 
       monitor = [
