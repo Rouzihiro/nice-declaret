@@ -1,6 +1,6 @@
 {
   pkgs,
-  userSettings,
+  mySettings,
   ...
 }: let
   systemDir = ./../../system;
@@ -32,36 +32,25 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nixpkgs.config.allowUnfree = true;
-
-  nix = {
-    package = pkgs.nixFlakes;
-
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-      auto-optimise-store = true;
-    };
-  };
-
   programs.zsh.enable = true;
 
-  users.users.${userSettings.username} = {
+  users.users.${mySettings.user.username} = {
     isNormalUser = true;
-    description = userSettings.name;
+    description = mySettings.user.name;
     extraGroups = ["wheel" "networkmanager"];
     initialPassword = "1235";
     shell = pkgs.zsh;
   };
 
   environment.variables = {
-    SUDO_EDITOR = userSettings.editor;
-    SYSTEMD_EDITOR = userSettings.editor;
-    EDITOR = userSettings.editor;
-    VISUAL = userSettings.editor;
+    SUDO_EDITOR = mySettings.user.editor;
+    SYSTEMD_EDITOR = mySettings.user.editor;
+    EDITOR = mySettings.user.editor;
+    VISUAL = mySettings.user.editor;
   };
 
   system.stateVersion = "24.11";
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nixpkgs.config.allowUnfree = true;
 }

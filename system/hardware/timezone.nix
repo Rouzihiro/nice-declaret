@@ -1,16 +1,16 @@
-{systemSettings, ...}: {
+{mySettings, ...}: {
   # Timezone and locale
-  time.timeZone = systemSettings.timezone; # time zone
-  i18n.defaultLocale = systemSettings.locale;
+  time.timeZone = mySettings.system.timezone; # time zone
+  i18n.defaultLocale = mySettings.system.locale;
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = systemSettings.locale;
-    LC_IDENTIFICATION = systemSettings.locale;
-    LC_MEASUREMENT = systemSettings.locale;
-    LC_MONETARY = systemSettings.locale;
-    LC_NAME = systemSettings.locale;
-    LC_NUMERIC = systemSettings.locale;
-    LC_PAPER = systemSettings.locale;
-    LC_TELEPHONE = systemSettings.locale;
-    LC_TIME = systemSettings.locale;
+    LC_ADDRESS = mySettings.system.locale;
+    LC_IDENTIFICATION = mySettings.system.locale;
+    LC_MEASUREMENT = mySettings.system.locale;
+    LC_MONETARY = mySettings.system.locale;
+    LC_NAME = mySettings.system.locale;
+    LC_NUMERIC = mySettings.system.locale;
+    LC_PAPER = mySettings.system.locale;
+    LC_TELEPHONE = mySettings.system.locale;
+    LC_TIME = mySettings.system.locale;
   };
 }

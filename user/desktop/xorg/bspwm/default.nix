@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  userSettings,
+  mySettings,
   ...
 }: {
   xsession.windowManager.bspwm = {
@@ -90,7 +90,7 @@
 
       # browser
       super + w
-        ${userSettings.browser}
+        ${mySettings.user.browser}
 
       # file manager
       super + e
@@ -98,7 +98,7 @@
 
       # terminal emulator
       super + Return
-        ${userSettings.term}
+        ${mySettings.user.term}
 
       # search rofi
       super + space

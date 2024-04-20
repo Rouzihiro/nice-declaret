@@ -2,15 +2,15 @@
   config,
   lib,
   pkgs,
-  userSettings,
+  mySettings,
   ...
 }: let
-  themePath = "../../../themes" + ("/" + userSettings.theme + "/" + userSettings.theme) + ".yaml";
-  themePolarity = lib.removeSuffix "\n" (builtins.readFile (./. + "../../../themes" + ("/" + userSettings.theme) + "/polarity.txt"));
-  backgroundUrl = builtins.readFile (./. + "../../../themes" + ("/" + userSettings.theme) + "/backgroundurl.txt");
-  backgroundSha256 = builtins.readFile (./. + "../../../themes/" + ("/" + userSettings.theme) + "/backgroundsha256.txt");
+  themePath = "../../../themes" + ("/" + mySettings.user.theme + "/" + mySettings.user.theme) + ".yaml";
+  themePolarity = lib.removeSuffix "\n" (builtins.readFile (./. + "../../../themes" + ("/" + mySettings.user.theme) + "/polarity.txt"));
+  backgroundUrl = builtins.readFile (./. + "../../../themes" + ("/" + mySettings.user.theme) + "/backgroundurl.txt");
+  backgroundSha256 = builtins.readFile (./. + "../../../themes/" + ("/" + mySettings.user.theme) + "/backgroundsha256.txt");
 in {
-  home.file.".currenttheme".text = userSettings.theme;
+  home.file.".currenttheme".text = mySettings.user.theme;
   stylix.autoEnable = false;
   stylix.polarity = themePolarity;
   stylix.image = pkgs.fetchurl {
@@ -21,26 +21,26 @@ in {
 
   stylix.fonts = {
     monospace = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
+      name = mySettings.user.font;
+      package = mySettings.user.fontPkg;
     };
     serif = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
+      name = mySettings.user.font;
+      package = mySettings.user.fontPkg;
     };
     sansSerif = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
+      name = mySettings.user.font;
+      package = mySettings.user.fontPkg;
     };
     emoji = {
       name = "Noto Color Emoji";
       package = pkgs.noto-fonts-emoji-blob-bin;
     };
     sizes = {
-      terminal = 9;
-      applications = 7;
-      popups = 7;
-      desktop = 7;
+      terminal = 10;
+      applications = 10;
+      popups = 10;
+      desktop = 10;
     };
   };
 
@@ -76,11 +76,11 @@ in {
   stylix.targets.kitty.enable = true;
   stylix.targets.gtk.enable = true;
   stylix.targets.rofi.enable =
-    if (userSettings.wmType == "x11")
+    if (mySettings.user.wmType == "x11")
     then true
     else false;
   stylix.targets.feh.enable =
-    if (userSettings.wmType == "x11")
+    if (mySettings.user.wmType == "x11")
     then true
     else false;
   programs.feh.enable = true;

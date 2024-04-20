@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  userSettings,
+  mySettings,
   ...
 }: {
   programs.waybar = {
@@ -153,7 +153,7 @@
         * {
             /* `otf-font-awesome` is required to be installed for icons */
             font-family: FontAwesome, ''
-      + userSettings.font
+      + mySettings.user.font
       + ''                ;
 
                           font-size: 12px;

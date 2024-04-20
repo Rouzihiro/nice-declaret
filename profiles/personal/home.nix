@@ -2,14 +2,14 @@
   config,
   pkgs,
   inputs,
-  userSettings,
+  mySettings,
   stylix,
   ...
 }: let
   userDir = ./../../user;
 in {
-  home.username = userSettings.username;
-  home.homeDirectory = "/home/${userSettings.username}";
+  home.username = mySettings.user.username;
+  home.homeDirectory = "/home/${mySettings.user.username}";
 
   imports = [
     stylix.homeManagerModules.stylix
@@ -88,15 +88,15 @@ in {
 
   programs.git = {
     enable = true;
-    userName = userSettings.github.name;
-    userEmail = userSettings.github.email;
+    userName = mySettings.user.github.name;
+    userEmail = mySettings.user.github.email;
   };
 
   home.sessionVariables = {
-    EDITOR = userSettings.editor;
-    SPAWNEDITOR = userSettings.spawnEditor;
-    TERM = userSettings.term;
-    BROWSER = userSettings.browser;
+    EDITOR = mySettings.user.editor;
+    SPAWNEDITOR = mySettings.user.spawnEditor;
+    TERM = mySettings.user.term;
+    BROWSER = mySettings.user.browser;
   };
 
   home.stateVersion = "23.11";

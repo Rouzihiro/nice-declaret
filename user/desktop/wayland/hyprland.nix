@@ -1,5 +1,5 @@
 {
-  userSettings,
+  mySettings,
   pkgs,
   ...
 }: {
@@ -36,8 +36,8 @@
       env = "XCURSOR_SIZE,24";
 
       input = {
-        kb_layout = userSettings.keyboard.layout;
-        kb_options = userSettings.keyboard.options;
+        kb_layout = mySettings.user.keyboard.layout;
+        kb_options = mySettings.user.keyboard.options;
         follow_mouse = 1;
 
         touchpad = {
