@@ -26,10 +26,11 @@
       exec-once = [
         # "swaybg -i Wallpaper/cat-watching-rain-4k-live_037.png"
         "waybar"
+        "swaybg -i Wallpaper/1672789345_witcher3_2023-01-03_19-24-03.png"
       ];
       exec = [
         # "mpvpaper '*' -o \"loop\" Wallpaper/cat-watching-rain-4k-live.mp4"
-        "swaybg -i Wallpaper/1672789345_witcher3_2023-01-03_19-24-03.png"
+        # "swaybg -i Wallpaper/1672789345_witcher3_2023-01-03_19-24-03.png"
       ];
 
       monitor = [
@@ -70,7 +71,7 @@
         rounding = 0;
 
         blur = {
-          enabled = true;
+          enabled = false;
           size = 3;
           passes = 1;
         };
