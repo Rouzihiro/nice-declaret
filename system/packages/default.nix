@@ -8,7 +8,6 @@
     pkgs.home-manager
 
     # browsers
-    pkgs.brave
     pkgs-stable.firefox
 
     # myApps

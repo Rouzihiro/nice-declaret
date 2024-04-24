@@ -5,6 +5,7 @@
   ...
 }: let
   myAliases = {
+    c = "clear";
     t = "tmux";
     ls = "exa --icons";
     lt = "exa --icons --tree";
@@ -24,7 +25,6 @@ in {
        %F{green}→%f "
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
 
-        tmux
         clear
     '';
     shellAliases = myAliases;

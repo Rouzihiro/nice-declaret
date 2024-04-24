@@ -55,7 +55,10 @@ in {
     qutebrowser
     telegram-desktop
     whatsapp-for-linux
+    emacs
 
+    # browsers
+    brave
     floorp
 
     # networking

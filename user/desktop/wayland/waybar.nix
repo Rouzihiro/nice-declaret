@@ -101,7 +101,7 @@
         clock = {
           "interval" = 1;
           "format" = "{:%a %Y-%m-%d %I:%M:%S %p}";
-          "timezone" = "Asia/Riyadh";
+          "timezone" = mySettings.system.timezone;
           "tooltip-format" = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';

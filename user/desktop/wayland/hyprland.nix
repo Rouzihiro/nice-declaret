@@ -72,7 +72,7 @@
         rounding = 0;
 
         blur = {
-          enabled = false;
+          enabled = true;
           size = 3;
           passes = 1;
         };
@@ -134,6 +134,8 @@
         "$mainMod, Space, exec, rofi -show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, I, togglesplit, # dwindle"
+        "$mainMod, S, pin"
+        "$mainMod, F, fullscreen"
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
@@ -143,10 +145,10 @@
         "$mainMod SHIFT, L, resizeactive, 100 0"
         "$mainMod SHIFT, K, resizeactive, 0 -100"
         "$mainMod SHIFT, J, resizeactive, 0 100"
-        "$mainMod ALT, H, moveactive, 500 0"
-        "$mainMod ALT, L, moveactive, -500 0"
-        "$mainMod ALT, K, moveactive, 0 -500"
-        "$mainMod ALT, J, moveactive, 0 500"
+        "$mainMod ALT, H, moveactive, -100 0"
+        "$mainMod ALT, L, moveactive, 100 0"
+        "$mainMod ALT, K, moveactive, 0 -100"
+        "$mainMod ALT, J, moveactive, 0 100"
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
         "$mainMod, 3, workspace, 3"
@@ -167,8 +169,8 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-        "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        "$mainMod, M, togglespecialworkspace, magic"
+        "$mainMod SHIFT, M, movetoworkspace, special:magic"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
         ", Print, exec, grim -g \"$(slurp -d)\" - | swappy -f -"
