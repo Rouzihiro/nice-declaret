@@ -1,4 +1,8 @@
 {...}: {
-  # OpenGL
-  hardware.opengl.enable = true;
+  # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 }

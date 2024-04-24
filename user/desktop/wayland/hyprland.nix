@@ -34,8 +34,9 @@
       ];
 
       monitor = [
-        "DP-1, 1920x1080, 0x0, 1"
-        "HDMI-A-1, 1600x900, 1920x0, 1"
+        "eDP-1, 1920x1080, 0x0, 1"
+        # "DP-1, 1920x1080, 0x0, 1"
+        # "HDMI-A-1, 1600x900, 1920x0, 1"
       ];
 
       env = "XCURSOR_SIZE,24";
@@ -128,6 +129,7 @@
         "$mainMod, Return, exec, alacritty"
         "$mainMod, Q, killactive,"
         "$mainMod, E, exec, thunar"
+        "$mainMod, W, exec, ${mySettings.user.browser}"
         "$mainMod, V, togglefloating,"
         "$mainMod, Space, exec, rofi -show drun"
         "$mainMod, P, pseudo, # dwindle"

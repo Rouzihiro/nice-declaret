@@ -10,6 +10,7 @@ in {
     (systemDir + /hardware/audio.nix)
     (systemDir + /hardware/bluetooth.nix)
     (systemDir + /hardware/network.nix)
+    (systemDir + /hardware/nvidia.nix)
     (systemDir + /hardware/opengl.nix)
     (systemDir + /hardware/timezone.nix)
     (systemDir + /hardware/zram.nix)

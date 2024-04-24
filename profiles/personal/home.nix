@@ -56,6 +56,8 @@ in {
     telegram-desktop
     whatsapp-for-linux
 
+    floorp
+
     # networking
     networkmanagerapplet
   ];
