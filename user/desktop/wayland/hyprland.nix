@@ -174,6 +174,8 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
         ", Print, exec, grim -g \"$(slurp -d)\" - | swappy -f -"
+        ", XF86MonBrightnessUp, exec, sudo light -A 20"
+        ", XF86MonBrightnessDown, exec, sudo light -U 20"
       ];
     };
   };

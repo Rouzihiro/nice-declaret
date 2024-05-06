@@ -10,7 +10,7 @@ in {
     (systemDir + /hardware/audio.nix)
     (systemDir + /hardware/bluetooth.nix)
     (systemDir + /hardware/network.nix)
-    (systemDir + /hardware/nvidia.nix)
+    # (systemDir + /hardware/nvidia.nix)
     (systemDir + /hardware/opengl.nix)
     (systemDir + /hardware/timezone.nix)
     (systemDir + /hardware/zram.nix)
@@ -19,8 +19,9 @@ in {
     (systemDir + /security/ssh.nix)
 
     # desktop
-    (systemDir + /desktop/sddm.nix)
+    (systemDir + /desktop/login.nix)
     (systemDir + /desktop/hyprland.nix)
+    (systemDir + /desktop/bspwm.nix)
 
     # apps
     (systemDir + /packages)
@@ -30,8 +31,12 @@ in {
     (systemDir + /hardware-configuration.nix)
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
 
   programs.zsh.enable = true;
 

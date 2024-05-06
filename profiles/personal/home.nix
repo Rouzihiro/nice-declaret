@@ -15,9 +15,9 @@ in {
     stylix.homeManagerModules.stylix
 
     # xorg
-    # (userDir + /wm/xorg/bspwm)
+    (userDir + /desktop/xorg/bspwm)
     # (userDir + /wm/xorg/i3wm)
-    #
+
     # wayland
     (userDir + /desktop/wayland)
     (userDir + /desktop/wayland/hyprland.nix)
@@ -56,6 +56,17 @@ in {
     telegram-desktop
     whatsapp-for-linux
     emacs
+    libreoffice
+    davinci-resolve
+    vlc
+
+    # wine
+    wineWowPackages.stable
+
+    # games
+    lutris
+    heroic
+    grapejuice
 
     # browsers
     brave

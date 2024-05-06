@@ -38,7 +38,8 @@
         };
         "keyboard-state" = {
           "numlock" = true;
-          "format" = " {icon} ";
+          "capslock" = true;
+          "format" = " {name} {icon} ";
           "format-icons" = {
             "locked" = "󰎠";
             "unlocked" = "󱧓";
@@ -121,7 +122,7 @@
             "critical" = 15;
           };
           "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
+          "format-charging" = "{capacity}% 󱐋";
           "format-plugged" = "{capacity}% ";
           #"format-good" = ""; # An empty format will hide the module
           #"format-full" = "";
@@ -137,8 +138,8 @@
           "format-source-muted" = " ";
           "format-icons" = {
             "headphone" = "";
-            "hands-free" = "";
-            "headset" = "";
+            "hands-free" = "󰩏";
+            "headset" = "";
             "phone" = "";
             "portable" = "";
             "car" = "";
