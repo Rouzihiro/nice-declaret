@@ -273,7 +273,7 @@
         monitor = "\${env:MONITOR}";
         offset-x = "0";
         offset-y = "0";
-        bottom = "true";
+        bottom = "false";
         label-monitor = "%name%";
         label-focused = "%name%";
         # dpi = 96
@@ -341,7 +341,7 @@
       "module/cava" = {
         type = "custom/script";
         tail = "true";
-        exec = "${config.home.homeDirectory}/.dotnix/user/wm/xorg/bspwm/cava.sh";
+        exec = "${config.home.homeDirectory}/.dotnix/user/desktop/xorg/bspwm/cava.sh";
         # exec = cava -p $HOME/.config/polybar/cava.ini
         # format = hello
         format-font = "5";

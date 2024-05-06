@@ -7,7 +7,15 @@
   programs.dconf.enable = true;
 
   # Add user to libvirtd group
-  users.users.${mySettings.user.username}.extraGroups = ["libvirtd"];
+  users.users.${mySettings.user.username}.extraGroups = [
+    "qemu-libvirtd"
+    "libvirtd"
+    "wheel"
+    "video"
+    "audio"
+    "disk"
+    "networkmanager"
+  ];
 
   # Install necessary packages
   environment.systemPackages = with pkgs; [

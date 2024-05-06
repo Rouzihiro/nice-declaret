@@ -31,12 +31,22 @@ in {
     (systemDir + /hardware-configuration.nix)
   ];
 
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    kernelParams = ["amd_iommu=on" "immou=pt"];
+    kernelModules = ["vfio-pci.ids=10de:25ac,10de:2291"];
+    blacklistedKernelModules = ["nouveau"];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+      };
+      grub = {
+        efiSupport = true;
+        device = "nodev";
+      };
+    };
+  };
 
   programs.zsh.enable = true;
 
