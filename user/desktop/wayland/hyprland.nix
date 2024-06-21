@@ -26,7 +26,8 @@
       exec-once = [
         # "swaybg -i Wallpaper/cat-watching-rain-4k-live_037.png"
         "waybar"
-        "swaybg -i Wallpaper/1672789345_witcher3_2023-01-03_19-24-03.png"
+        # "mpvpaper '*' -o \"loop\" Wallpaper/cat-watching-rain-4k-live.mp4"
+        "~/scripts/wallChange.sh"
       ];
       exec = [
         # "mpvpaper '*' -o \"loop\" Wallpaper/cat-watching-rain-4k-live.mp4"
@@ -126,10 +127,11 @@
       ];
 
       bind = [
-        "$mainMod, Return, exec, alacritty"
+        "$mainMod, Return, exec, ${mySettings.user.term}"
         "$mainMod, Q, killactive,"
         "$mainMod, E, exec, thunar"
         "$mainMod, W, exec, ${mySettings.user.browser}"
+        "$mainMod SHIFT, W, exec, ~/scripts/wallChange.sh" 
         "$mainMod, V, togglefloating,"
         "$mainMod, Space, exec, rofi -show drun"
         "$mainMod, P, pseudo, # dwindle"

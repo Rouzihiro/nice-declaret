@@ -27,6 +27,7 @@ in {
     (systemDir + /packages)
     (systemDir + /app/steam.nix)
     (systemDir + /app/vm.nix)
+    (systemDir + /app/thunar.nix)
 
     (systemDir + /hardware-configuration.nix)
   ];
@@ -36,18 +37,19 @@ in {
     kernelModules = ["vfio-pci.ids=10de:25ac,10de:2291"];
     blacklistedKernelModules = ["nouveau"];
 
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-      };
-      grub = {
-        efiSupport = true;
-        device = "nodev";
-      };
-    };
+    loader.efi.canTouchEfiVariables = true;
+
+    loader.systemd-boot.enable= true;
+
+    #loader.grub.efiSupport = true;
+    #loader.grub.device = "nodev";
+    #loader.grup.useOSProber = true;
   };
 
+  xdg.portal.enable = true;
+  services.flatpak.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
   programs.zsh.enable = true;
 
   users.users.${mySettings.user.username} = {
@@ -65,7 +67,12 @@ in {
     VISUAL = mySettings.user.editor;
   };
 
+  # environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
+
   system.stateVersion = "24.11";
+
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs.config.allowUnfree = true;

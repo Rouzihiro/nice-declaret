@@ -3,20 +3,9 @@
   lib,
   ...
 }: {
-  #     gtk.enable = true;
-  #
-  #     home.packages = with pkgs; [
-  # 	graphite-gtk-theme
-  #     ];
-  #
-  #     qt.enable = true;
-  #     qt.platformTheme = "gtk";
-  #     qt.style.package = pkgs.adwaita-qt;
-  #     qt.style.name = "adwaite-dark";
-  #
   gtk.cursorTheme.package = pkgs.apple-cursor;
   gtk.cursorTheme.name = "macOS-BigSUr-White";
-  # #gtk.cursorTheme.size = 16;
+  #gtk.cursorTheme.size = 16;
 
   gtk.theme.package = lib.mkDefault pkgs.gruvbox-dark-gtk;
   gtk.theme.name = lib.mkDefault "gruvbox-dark";
@@ -41,7 +30,7 @@
 
     keybindings = {
       "\\\"" = "";
-      o = "";
+      o = "swww img %f% --transition-fps 30 --transition-type any --transition-duration 1";
       c = "mkdir";
       "." = "set hidden!";
       "`" = "mark-load";
@@ -56,6 +45,7 @@
 
       ee = "editor-open";
       V = ''$${pkgs.bat}/bin/bat --paging=always --theme=gruvbox "$f"'';
+
 
       # ...
     };

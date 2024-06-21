@@ -3,12 +3,15 @@
   pkgs-stable,
   ...
 }: {
+
+
+
   environment.systemPackages = [
     #=======================
     pkgs.home-manager
 
     # browsers
-    pkgs-stable.firefox
+    pkgs.firefox
 
     # myApps
     pkgs.neovim
@@ -38,20 +41,31 @@
     pkgs.gcc
 
     # --- rust
-    pkgs.rustup
-    pkgs.rust-analyzer-unwrapped
-    pkgs.pkg-config
-    pkgs.glib
-    pkgs.gobject-introspection
-    pkgs.gdk-pixbuf
-    pkgs.pango
-    pkgs.pangolin
+    # pkgs.rustup
+    # pkgs.rust-analyzer-unwrapped
+    # pkgs.pkg-config
+    # pkgs.glib
+    # pkgs.gobject-introspection
+    # pkgs.gdk-pixbuf
+    # pkgs.pango
+    # pkgs.pangolin
+    # pkgs.lispPackages.cl-webkit2
+    # pkgs.cairo
+    # pkgs.gdk-pixbuf
+    # pkgs.curl
+    # pkgs.wget
+    # pkgs.dbus
+    # pkgs.openssl_3
+    # pkgs.gtk3
+    # pkgs.libsoup
+    # pkgs.webkitgtk
+    # pkgs.librsvg
 
     #--- bun
     pkgs.bun
 
     #-- nodejs
-    pkgs.nodejs_21
+    pkgs.nodejs_22
     pkgs.nodePackages.live-server
 
     #--- python

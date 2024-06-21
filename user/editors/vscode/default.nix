@@ -1,8 +1,17 @@
 {
   config,
   pkgs,
+  mySettings,
   ...
-}: {
+}: let 
+
+codeBgColor = "#" + config.lib.stylix.colors.base00;
+termBgColor = "#" + config.lib.stylix.colors.base00;
+
+# codeBgColor = "#1d2021";
+# termBgColor = "#1c1c1c";
+
+in {
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
@@ -19,29 +28,29 @@
 
     userSettings = {
       "workbench.colorCustomizations" = {
-        "editor.background" = "#262626";
-        "sideBar.background" = "#262626";
-        "profileBadge.background" = "#262626";
-        "activityBar.background" = "#262626";
-        "progressBar.background" = "#262626";
-        "badge.background" = "#262626";
-        "editorGroupHeader.tabsBackground" = "#262626";
-        "editorGroupHeader.noTabsBackground" = "#262626";
-        "editorGroup.dropBackground" = "#262626";
-        "tab.unfocusedActiveBackground" = "#262626";
-        "tab.inactiveBackground" = "#262626";
+        "editor.background" = "${codeBgColor}";
+        "sideBar.background" = "${codeBgColor}";
+        "profileBadge.background" = "${codeBgColor}";
+        "activityBar.background" = "${codeBgColor}";
+        "progressBar.background" = "${codeBgColor}";
+        "badge.background" = "${codeBgColor}";
+        "editorGroupHeader.tabsBackground" = "${codeBgColor}";
+        "editorGroupHeader.noTabsBackground" = "${codeBgColor}";
+        "editorGroup.dropBackground" = "${codeBgColor}";
+        "tab.unfocusedActiveBackground" = "${codeBgColor}";
+        "tab.inactiveBackground" = "${codeBgColor}";
         "tab.activeBackground" = "#2D2424";
-        "panel.background" = "#1c1c1c";
-        "panel.border" = "#1c1c1c";
-        "statusBar.background" = "#262626";
-        "statusBarItem.remoteBackground" = "#262626";
-        "terminal.background" = "#1c1c1c";
-        "terminal.dropBackground" = "#1c1c1c";
-        "terminal.selectionBackground" = "#1c1c1c";
-        "terminal.inactiveSelectionBackground" = "#1c1c1c";
-        "terminal.findMatchHighlightBackground" = "#1c1c1c";
-        "terminalCommandDecoration.defaultBackground" = "#1c1c1c";
-        "terminalCommandDecoration.successBackground" = "#1c1c1c";
+        "panel.background" = "${termBgColor}";
+        "panel.border" = "${termBgColor}";
+        "statusBar.background" = "${codeBgColor}";
+        "statusBarItem.remoteBackground" = "${codeBgColor}";
+        "terminal.background" = "${termBgColor}";
+        "terminal.dropBackground" = "${termBgColor}";
+        "terminal.selectionBackground" = "${termBgColor}";
+        "terminal.inactiveSelectionBackground" = "${termBgColor}";
+        "terminal.findMatchHighlightBackground" = "${termBgColor}";
+        "terminalCommandDecoration.defaultBackground" = "${termBgColor}";
+        "terminalCommandDecoration.successBackground" = "${termBgColor}";
         "terminal.tab.activeBorder" = "#467f60";
       };
       "window.menuBarVisibility" = "toggle";
@@ -65,9 +74,10 @@
         "source.organizeImports" = "explicit";
       };
       "keyboard.dispatch" = "keyCode";
+      "editor.mouseWheelZoom" = true;
       "editor.cursorSmoothCaretAnimation" = "on";
       "editor.cursorSurroundingLines" = 5;
-      "editor.fontFamily" = "Roboto Mono";
+      "editor.fontFamily" = "${mySettings.user.font}";
       "editor.fontLigatures" = true;
       "editor.fontSize" = 16;
       "editor.fontWeight" = "500";

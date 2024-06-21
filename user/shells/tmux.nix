@@ -53,6 +53,7 @@
       set -g @plugin 'tmux-plugins/tpm'
       run '~/.config/tmux/plugins/tpm/tpm'
 
+      set-option -g status-position top
       set-option -g pane-border-lines simple
     '';
   };

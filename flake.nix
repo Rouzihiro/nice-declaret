@@ -8,7 +8,7 @@
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
+   };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -19,7 +19,7 @@
     nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
     rust-overlay.url = "github:oxalica/rust-overlay";
     stylix.url = "github:danth/stylix";
-    Neve.url = "github:0xravy/Neve";
+    # Neve.url = "github:0xravy/Neve";
   };
 
   outputs = inputs @ {

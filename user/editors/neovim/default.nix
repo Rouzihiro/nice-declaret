@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
-    home.file."./.config/nvim/" = {
-        source = ./lazy-conf;
-        recursive = false;
-    };
+    xdg.enable = true;
+
+    xdg.configFile."src".source = /home/ravy/.dotnix/user/editors/neovim/src;
+
 }

@@ -24,18 +24,18 @@
       options = "grp:rctrl_rshift_toggle, caps:escape";
     };
     dotfilesDir = "~/.dotnix"; # absolute path of the local repo
-    theme = "gruvbox-dark-hard"; # selcted theme from my themes directory (./themes/)
+    theme = "twilight"; # selcted theme from my themes directory (./themes/)
     wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
     # window manager type (hyprland or x11) translator
     wmType =
       if (wm == "hyprland")
       then "wayland"
       else "x11";
-    browser = "qutebrowser"; # Default browser; must select one from ./user/app/browser/
+    browser = "brave"; # Default browser; must select one from ./user/app/browser/
     defaultRoamDir = "personal"; # Default org roam directory relative to ~/Org
     term = "alacritty"; # Default terminal command;
-    font = "Intel One Mono"; # Selected font
-    fontPkg = pkgs.intel-one-mono; # Font package
+    font = "Monaspace Krypton, Fira Code, Monaco, monospace"; # Selected font
+    fontPkg = pkgs.monaspace; # Font package
     editor = "nvim"; # Default editor;
     spawnEditor = "nvim";
   };
