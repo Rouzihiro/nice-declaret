@@ -80,7 +80,7 @@
       set previewer ${previewer}/bin/pv.sh
 
       cmd setwallpaper ''\${{
-        ${mySettings.scriptsDir}/openwall.sh $f
+        ${mySettings.scriptsDir}/wallChange.sh $f
       }}
 
       map w :setwallpaper 
