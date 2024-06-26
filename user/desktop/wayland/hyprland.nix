@@ -67,13 +67,15 @@
         allow_tearing = true;
       };
 
-      windowrulev2 = "noborder, onworkspace:1";
+      windowrulev2 = [
+        "noborder, onworkspace:1"
+      ];
 
       decoration = {
         rounding = 0;
 
         blur = {
-          enabled = true;
+          enabled = false;
           size = 3;
           passes = 1;
         };
@@ -131,8 +133,8 @@
         "$mainMod, Q, killactive,"
         "$mainMod, E, exec, thunar"
         "$mainMod, W, exec, ${mySettings.user.browser}"
-        "$mainMod SHIFT, W, exec, ~/scripts/wallChange.sh" 
-        "$mainMod, V, togglefloating,"
+        "$mainMod SHIFT, W, exec, ${mySettings.scriptsDir}/wallChange.sh" 
+        "$mainMod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch centerwindow 1\""
         "$mainMod, Space, exec, rofi -show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, I, togglesplit, # dwindle"

@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  mySettings,
   ...
 }: {
   gtk.cursorTheme.package = pkgs.apple-cursor;
@@ -30,7 +31,6 @@
 
     keybindings = {
       "\\\"" = "";
-      o = "swww img %f% --transition-fps 30 --transition-type any --transition-duration 1";
       c = "mkdir";
       "." = "set hidden!";
       "`" = "mark-load";
@@ -45,7 +45,6 @@
 
       ee = "editor-open";
       V = ''$${pkgs.bat}/bin/bat --paging=always --theme=gruvbox "$f"'';
-
 
       # ...
     };
@@ -79,6 +78,12 @@
     in ''
       set cleaner ${cleaner}/bin/clean.sh
       set previewer ${previewer}/bin/pv.sh
+
+      cmd setwallpaper ''\${{
+        ${mySettings.scriptsDir}/openwall.sh $f
+      }}
+
+      map w :setwallpaper 
     '';
   };
 }

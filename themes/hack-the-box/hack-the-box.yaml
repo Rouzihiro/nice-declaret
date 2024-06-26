@@ -1,6 +1,6 @@
 scheme: "HackTheBox"
 author: "audibleblink (https://github.com/audibleblink/hackthebox.vim)"
-base00: "000000" # black
+base00: "141D2B" # black
 base01: "1a2332" # darkish black
 base02: "a4b1cd" # brightish black
 base03: "666666" # bright black

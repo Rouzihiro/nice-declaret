@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
   # ---- SYSTEM SETTINGS ---- #
   system = {
     system = "x86_64-linux"; # system arch
@@ -33,10 +33,16 @@
       else "x11";
     browser = "brave"; # Default browser; must select one from ./user/app/browser/
     defaultRoamDir = "personal"; # Default org roam directory relative to ~/Org
-    term = "alacritty"; # Default terminal command;
-    font = "Monaspace Krypton, Fira Code, Monaco, monospace"; # Selected font
-    fontPkg = pkgs.monaspace; # Font package
+    term = "kitty"; # Default terminal command;
+    # font = "Monaspace Krypton, Fira Code, Monaco, monospace"; # Selected font
+    # fontPkg = pkgs.monaspace; # Font package
+    font = "JetBrains Mono, Consolas, 'Courier New', monospace"; # Selected font
+    fontPkg = pkgs.nerdfonts; # Font package
     editor = "nvim"; # Default editor;
     spawnEditor = "nvim";
   };
+
+  scriptsDir = "${user.dotfilesDir}/scripts";
+in {
+    inherit system user scriptsDir;
 }
