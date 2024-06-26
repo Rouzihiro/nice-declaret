@@ -7,31 +7,51 @@
 
     plugins = [
       pkgs.tmuxPlugins.cpu
-      {
-        plugin = pkgs.tmuxPlugins.resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-      }
-      {
-        plugin = pkgs.tmuxPlugins.continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '60' # minutes
-        '';
-      }
-      {
-        plugin = pkgs.tmuxPlugins.gruvbox;
-        extraConfig = ''
-          set -g @plugin 'egel/tmux-gruvbox'
-          set -g @tmux-gruvbox 'dark' # or 'light'
-        '';
-      }
 
-      {
-        plugin = pkgs.tmuxPlugins.vim-tmux-navigator;
-        extraConfig = ''
-          set -g @plugin 'christoomey/vim-tmux-navigator'
+    # { # theme
+    #   plugin = pkgs.tmuxPlugins.gruvbox;
+    #   extraConfig = ''
+    #     set -g @plugin 'egel/tmux-gruvbox'
+    #     set -g @tmux-gruvbox 'dark' # or 'light'
+    #     '';
+    # }
+
+    # { # theme
+    #   plugin = pkgs.tmuxPlugins.power-theme;
+    #   extraConfig = ''
+    #     set -g @plugin 'wfxr/tmux-power'
+    #     set -g @tmux_power_theme 'moon'
+    #     '';
+    # }
+
+    { # theme
+      plugin = pkgs. tmuxPlugins.catppuccin;
+      extraConfig = ''
+        set -g @plugin 'catppuccin/tmux'
+        set -g @catppuccin_flavour 'macchiato'
         '';
-      }
+    }
+
+    {
+      plugin = pkgs.tmuxPlugins.resurrect;
+      extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+    }
+
+    {
+      plugin = pkgs.tmuxPlugins.continuum;
+      extraConfig = ''
+        set -g @continuum-restore 'on'
+        set -g @continuum-save-interval '60' # minutes
+        '';
+    }
+
+    {
+      plugin = pkgs.tmuxPlugins.vim-tmux-navigator;
+      extraConfig = ''
+        set -g @plugin 'christoomey/vim-tmux-navigator'
+        '';
+    }
+
     ];
 
     extraConfig = ''

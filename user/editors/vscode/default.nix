@@ -28,30 +28,30 @@ in {
 
     userSettings = {
       "workbench.colorCustomizations" = {
-        "editor.background" = "${codeBgColor}";
-        "sideBar.background" = "${codeBgColor}";
-        "profileBadge.background" = "${codeBgColor}";
-        "activityBar.background" = "${codeBgColor}";
-        "progressBar.background" = "${codeBgColor}";
-        "badge.background" = "${codeBgColor}";
-        "editorGroupHeader.tabsBackground" = "${codeBgColor}";
-        "editorGroupHeader.noTabsBackground" = "${codeBgColor}";
-        "editorGroup.dropBackground" = "${codeBgColor}";
-        "tab.unfocusedActiveBackground" = "${codeBgColor}";
-        "tab.inactiveBackground" = "${codeBgColor}";
-        "tab.activeBackground" = "#2D2424";
-        "panel.background" = "${termBgColor}";
-        "panel.border" = "${termBgColor}";
-        "statusBar.background" = "${codeBgColor}";
-        "statusBarItem.remoteBackground" = "${codeBgColor}";
-        "terminal.background" = "${termBgColor}";
-        "terminal.dropBackground" = "${termBgColor}";
-        "terminal.selectionBackground" = "${termBgColor}";
-        "terminal.inactiveSelectionBackground" = "${termBgColor}";
-        "terminal.findMatchHighlightBackground" = "${termBgColor}";
-        "terminalCommandDecoration.defaultBackground" = "${termBgColor}";
-        "terminalCommandDecoration.successBackground" = "${termBgColor}";
-        "terminal.tab.activeBorder" = "#467f60";
+        # "editor.background" = "${codeBgColor}";
+        # "sideBar.background" = "${codeBgColor}";
+        # "profileBadge.background" = "${codeBgColor}";
+        # "activityBar.background" = "${codeBgColor}";
+        # "progressBar.background" = "${codeBgColor}";
+        # "badge.background" = "${codeBgColor}";
+        # "editorGroupHeader.tabsBackground" = "${codeBgColor}";
+        # "editorGroupHeader.noTabsBackground" = "${codeBgColor}";
+        # "editorGroup.dropBackground" = "${codeBgColor}";
+        # "tab.unfocusedActiveBackground" = "${codeBgColor}";
+        # "tab.inactiveBackground" = "${codeBgColor}";
+        # "tab.activeBackground" = "#2D2424";
+        # "panel.background" = "${termBgColor}";
+        # "panel.border" = "${termBgColor}";
+        # "statusBar.background" = "${codeBgColor}";
+        # "statusBarItem.remoteBackground" = "${codeBgColor}";
+        # "terminal.background" = "${termBgColor}";
+        # "terminal.dropBackground" = "${termBgColor}";
+        # "terminal.selectionBackground" = "${termBgColor}";
+        # "terminal.inactiveSelectionBackground" = "${termBgColor}";
+        # "terminal.findMatchHighlightBackground" = "${termBgColor}";
+        # "terminalCommandDecoration.defaultBackground" = "${termBgColor}";
+        # "terminalCommandDecoration.successBackground" = "${termBgColor}";
+        # "terminal.tab.activeBorder" = "#467f60";
       };
       "window.menuBarVisibility" = "toggle";
       "[javascript]" = {
@@ -77,10 +77,10 @@ in {
       "editor.mouseWheelZoom" = true;
       "editor.cursorSmoothCaretAnimation" = "on";
       "editor.cursorSurroundingLines" = 5;
-      "editor.fontFamily" = "${mySettings.user.font}";
-      "editor.fontLigatures" = true;
-      "editor.fontSize" = 16;
-      "editor.fontWeight" = "500";
+      # "editor.fontFamily" = "${mySettings.user.font}";
+      # "editor.fontLigatures" = true;
+      # "editor.fontSize" = 16;
+      # "editor.fontWeight" = "500";
       "editor.formatOnSave" = true;
       "editor.inlineSuggest.enabled" = true;
       "editor.lineNumbers" = "relative";
@@ -90,7 +90,20 @@ in {
       "editor.stickyScroll.enabled" = true;
       "editor.suggest.insertMode" = "replace";
       "editor.suggestFontSize" = 14;
+      # "editor.wordWrap" = "on";
+
+      # Hack the box theme
+      "editor.fontFamily" = "JetBrains Mono, Consolas, 'Courier New', monospace";
+      "editor.fontSize" = 12;
+      "editor.fontWeight" = "300";
+      "editor.lineHeight" = 20;
+      "editor.letterSpacing" = "0.5";
+      "editor.fontLigatures" = true;
       "editor.wordWrap" = "on";
+      "editor.formatOnPaste" = true;
+      # "editor.cursorBlinking" = "smooth";
+
+
       "errorLens.fontStyleItalic" = true;
       "everforest.italicKeywords" = true;
       "explorer.confirmDelete" = false;
@@ -237,7 +250,7 @@ in {
       "workbench.settings.editor" = "json";
       "workbench.startupEditor" = "readme";
       "zenMode.hideLineNumbers" = false;
-      "workbench.colorTheme" = "Gruvbox Dark Medium";
+      "workbench.colorTheme" = "Hack The Box";
       "workbench.iconTheme" = "material-icon-theme";
       "svelte.enable-ts-plugin" = true;
       "zenMode.fullScreen" = false;
@@ -248,7 +261,7 @@ in {
       };
       "zenMode.showTabs" = "none";
       "glassit.alpha" = 255;
-      "terminal.integrated.fontSize" = 12;
+      # "terminal.integrated.fontSize" = 12;
       "prettier.tabWidth" = 4;
       "[css]" = {
         "editor.defaultFormatter" = "esbenp.prettier-vscode";

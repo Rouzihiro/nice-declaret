@@ -1,0 +1,18 @@
+scheme: "HackTheBox"
+author: "audibleblink (https://github.com/audibleblink/hackthebox.vim)"
+base00: "000000" # black
+base01: "1a2332" # darkish black
+base02: "a4b1cd" # brightish black
+base03: "666666" # bright black
+base04: "7e7e7e" # darker white
+base05: "ffffff" # white
+base06: "d2d2d2" # middle white
+base07: "ffffff" # bright white
+base08: "ff8484" # bright red
+base09: "ffaf00" # yellow
+base0A: "ffcc5c" # bright yellow
+base0B: "c5f467" # bright green
+base0C: "5cecc6" # bright cyan
+base0D: "5454fc" # bright blue
+base0E: "fc54fc" # bright magenta
+base0F: "9fef00" # green

@@ -55,9 +55,9 @@
       };
 
       general = {
-        gaps_in = 3;
-        gaps_out = 7;
-        border_size = 3;
+        gaps_in = 0;
+        gaps_out = 0;
+        border_size = 0;
         bezier = "linear, 0.0, 0.0, 1.0, 1.0";
         "col.active_border" = "rgb(FFF5EE) rgba(FFEFD5ee) 45deg";
         "col.inactive_border" = "rgb(282828)";

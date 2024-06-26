@@ -24,7 +24,7 @@
       options = "grp:rctrl_rshift_toggle, caps:escape";
     };
     dotfilesDir = "~/.dotnix"; # absolute path of the local repo
-    theme = "twilight"; # selcted theme from my themes directory (./themes/)
+    theme = "hack-the-box"; # selcted theme from my themes directory (./themes/)
     wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
     # window manager type (hyprland or x11) translator
     wmType =

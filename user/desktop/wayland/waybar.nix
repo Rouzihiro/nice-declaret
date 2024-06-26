@@ -17,8 +17,8 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 25;
-        margin = "7 7 3 7";
+        height = 10;
+        margin = "0 0 0 0";
         spacing = 0;
 
         modules-left = ["custom/os" "custom/hyprprofile" "battery" "backlight" "keyboard-state" "pulseaudio" "cpu" "memory"];
@@ -157,13 +157,13 @@
       + mySettings.user.font
       + ''                ;
 
-                          font-size: 12px;
+                          font-size: 10px;
         }
                           window#waybar {
                                   background-color: #''
       + config.lib.stylix.colors.base00
       + ''        ;
-                  opacity: 0.75;
+                  opacity: 1;
                   border-radius: 0px;
                   color: #''
       + config.lib.stylix.colors.base07
@@ -260,7 +260,7 @@
 
               #window,
               #workspaces {
-                  margin: 0 4px;
+                  margin: 0 0px;
               }
 
               /* If workspaces is the leftmost module, omit left margin */
