@@ -26,6 +26,7 @@
       exec-once = [
         # "swaybg -i Wallpaper/cat-watching-rain-4k-live_037.png"
         "waybar"
+        "swww-deamon"
         # "mpvpaper '*' -o \"loop\" Wallpaper/cat-watching-rain-4k-live.mp4"
         "~/scripts/wallChange.sh"
       ];
@@ -55,9 +56,9 @@
       };
 
       general = {
-        gaps_in = 0;
-        gaps_out = 0;
-        border_size = 0;
+        gaps_in = 7;
+        gaps_out = 7;
+        border_size = 3;
         bezier = "linear, 0.0, 0.0, 1.0, 1.0";
         "col.active_border" = "rgb(FFF5EE) rgba(FFEFD5ee) 45deg";
         "col.inactive_border" = "rgb(282828)";
@@ -67,12 +68,13 @@
         allow_tearing = true;
       };
 
+
       windowrulev2 = [
         "noborder, onworkspace:1"
       ];
 
       decoration = {
-        rounding = 0;
+        rounding = 10;
 
         blur = {
           enabled = false;
@@ -125,7 +127,9 @@
 
       bindm = [
         "$mainMod, mouse:272, movewindow"
+        "$mainMod, Control_L, movewindow"
         "$mainMod, mouse:273, resizewindow"
+        "$mainMod, ALT_L, resizewindow"
       ];
 
       bind = [
@@ -134,11 +138,12 @@
         "$mainMod, E, exec, thunar"
         "$mainMod, W, exec, ${mySettings.user.browser}"
         "$mainMod SHIFT, W, exec, ${mySettings.scriptsDir}/wallChange.sh" 
-        "$mainMod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch centerwindow 1\""
+        "$mainMod, V, exec, hyprctl --batch \"dispatch togglefloating ; dispatch centerwindow 1 ; dispatch resize 700px 400px\""
         "$mainMod, Space, exec, rofi -show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, I, togglesplit, # dwindle"
         "$mainMod, S, pin"
+        "$mainMod, Z, exec, hyprpicker -a"
         "$mainMod, F, fullscreen"
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
