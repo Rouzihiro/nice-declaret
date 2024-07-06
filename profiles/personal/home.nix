@@ -25,7 +25,7 @@ in {
 
     # (userDir + /browsers/firefox)
     (userDir + /editors/vscode)
-    # (userDir + /editors/neovim)
+    (userDir + /editors/neovim)
     (userDir + /terminals/alacritty)
     (userDir + /terminals/kitty)
 

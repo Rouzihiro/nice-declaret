@@ -1,8 +1,5 @@
 { config, pkgs, ... }:
 
 {
-    xdg.enable = true;
-
-    xdg.configFile."src".source = /home/ravy/.dotnix/user/editors/neovim/src;
-
+    home.file.".config/nvim".source = "/home/ravy/.dotnix/user/editors/neovim/src";
 }
