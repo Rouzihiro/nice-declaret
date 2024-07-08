@@ -26,7 +26,7 @@
       exec-once = [
         # "swaybg -i Wallpaper/cat-watching-rain-4k-live_037.png"
         "waybar"
-        "swww-deamon"
+        "swww-daemon"
         # "mpvpaper '*' -o \"loop\" Wallpaper/cat-watching-rain-4k-live.mp4"
         "~/scripts/wallChange.sh"
       ];

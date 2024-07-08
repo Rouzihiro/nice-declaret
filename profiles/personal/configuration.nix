@@ -19,7 +19,7 @@ in {
     (systemDir + /security/ssh.nix)
 
     # desktop
-    (systemDir + /desktop/login.nix)
+    # (systemDir + /desktop/login.nix)
     (systemDir + /desktop/hyprland.nix)
     (systemDir + /desktop/bspwm.nix)
 

@@ -65,6 +65,7 @@ in {
     android-studio
     fzf
     weylus
+    zed-editor
 
     # wine
     wineWowPackages.stable

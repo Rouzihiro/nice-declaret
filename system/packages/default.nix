@@ -3,9 +3,6 @@
   pkgs-stable,
   ...
 }: {
-
-
-
   environment.systemPackages = [
     #=======================
     pkgs.home-manager
