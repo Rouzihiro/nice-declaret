@@ -7,6 +7,9 @@
     #=======================
     pkgs.home-manager
 
+    # fonts
+    pkgs.nerdfonts
+
     # browsers
     pkgs.firefox
 
