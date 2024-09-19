@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -14,12 +14,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    flake-utils.url = "github:numtide/flake-utils";
-    nixneovimplugins.url = "github:NixNeovim/NixNeovimPlugins";
-    rust-overlay.url = "github:oxalica/rust-overlay";
-    stylix.url = "github:danth/stylix";
-    # Neve.url = "github:0xravy/Neve";
   };
 
   outputs = inputs @ {
@@ -27,15 +21,10 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
-    stylix,
-    nixvim,
-    flake-utils,
-    nixneovimplugins,
-    rust-overlay,
     ...
   }: let
     #--------------------------
-    mySettings = import ./profiles/personal/settings.nix {inherit pkgs;};
+    mySettings = import ./hosts/desktop/opts.nix {inherit pkgs;};
 
     nixpkgs-patched = (import nixpkgs {system = mySettings.system.system;}).applyPatches {
       name = "nixpkgs-patched";
@@ -48,7 +37,6 @@
         allowUnfree = true;
         allowUnfreePredicate = _: true;
       };
-      overlays = [rust-overlay.overlays.default];
     };
 
     pkgs-stable = import nixpkgs-stable {
@@ -78,37 +66,33 @@
         system = mySettings.system.system;
         modules = [
           (./.
-            + "/profiles"
-            + ("/" + mySettings.system.profile)
-            + "/configuration.nix")
-
-          nixvim.nixosModules.nixvim
+            + "/hosts"
+            + ("/" + mySettings.system.host)
+            + "/conf.nix")
         ]; # load configuration.nix from selected PROFILE
         specialArgs = {
           # pass config variables from above
           inherit pkgs-stable;
           inherit mySettings;
           inherit inputs;
-          inherit (inputs) stylix;
         };
       };
     };
 
     # ========================= USER
     homeConfigurations = {
-      ${mySettings.user.username} = home-manager.lib.homeManagerConfiguration {
+      ${mySettings.user.name} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           (./.
-            + "/profiles"
-            + ("/" + mySettings.system.profile)
-            + "/home.nix") # load home.nix from selected PROFILE
+            + "/hosts"
+            + ("/" + mySettings.system.host)
+            + "/user.nix") # load home.nix from selected PROFILE
         ];
         extraSpecialArgs = {
           inherit pkgs-stable;
           inherit mySettings;
           inherit inputs;
-          inherit (inputs) stylix;
         };
       };
     };
