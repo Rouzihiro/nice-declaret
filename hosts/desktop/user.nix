@@ -30,6 +30,7 @@ in {
     # tools
     neofetch
     fastfetch
+    nerdfetch
     lazygit
     bat
     themechanger

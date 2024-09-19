@@ -22,11 +22,12 @@ in {
   programs.zsh = {
     enable = true;
     initExtra = ''
-      PROMPT="[%U%F{magenta}%n%f%u@%U%F{blue}%m%f%u:%F{yellow}%~%f]
-      %F{green}#%f "
+      PROMPT="%F{yellow}%n%f%F{red}@%F{blue}%m%f%u:%F{magenta}%~%f %F{green}$%f "
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
 
         clear
+        nerdfetch
+        echo ""
     '';
     shellAliases = myAliases;
     dotDir = ".config/zsh";
