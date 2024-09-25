@@ -27,8 +27,7 @@
     pkgs.tofi
     pkgs.tmux
     pkgs.btop
-    pkgs.nvtop
-    pkgs.nitrogen
+    pkgs.nvtopPackages.full
     pkgs.zip
     pkgs.unzip
     pkgs.xfce.thunar

@@ -11,24 +11,20 @@ in {
   home.homeDirectory = "/home/${mySettings.user.name}";
 
   imports = [
-    # xorg
-
    "${userDir}/apps/desktop-i3wm"
+   "${userDir}/apps/app-picom"
    "${userDir}/apps/editor-nvim"
-
+   "${userDir}/apps/shell-lf"
    "${userDir}/apps/shell-zsh"
    "${userDir}/apps/shell-tmux"
    "${userDir}/apps/term-kitty"
 
    "${userDir}/style/font.nix"
-
-    # ../hack/tools.nix
-    # ../work/home.nix
+   "${userDir}/style/gtk.nix"
   ];
 
   home.packages = with pkgs; [
-    # tools
-    neofetch
+    # ============> TOOLS
     fastfetch
     nerdfetch
     lazygit
@@ -41,11 +37,13 @@ in {
     vlc
     fzf
     picom
-    scrot
     flameshot
     rofi
+    pkg-config
+    feh
+    xorg.xinit
 
-    # apps
+    # ============> APPS
     pavucontrol
     obs-studio
     discord
@@ -54,9 +52,29 @@ in {
     gparted
     zed-editor
     vscode
+    gnome-calculator
+    waypaper
+    wireshark
+    mission-center
 
-    # networking
+    # games
+    superTuxKart
+
+    # ============> NETWORKING
     networkmanagerapplet
+
+    # ============> LANGUAGE
+    # rust
+    rustup
+
+    # java
+    openjdk8-bootstrap
+    # jdk8_headless
+    # jre8
+    javaPackages.openjfx11
+
+    # C / C++
+    clang
   ];
 
   services.syncthing.enable = true;
@@ -77,10 +95,11 @@ in {
       extraConfig = {
         XDG_DOTFILES_DIR = "${config.home.homeDirectory}/dotfiles";
         XDG_ARCHIVE_DIR = "${config.home.homeDirectory}/Archive";
-        XDG_VM_DIR = "${config.home.homeDirectory}/Machines";
-        XDG_BOOK_DIR = "${config.home.homeDirectory}/Books";
-        XDG_WALLPAPER_DIR = "${config.home.homeDirectory}/Pictures/wallpapers";
+        XDG_MACHINES_DIR = "${config.home.homeDirectory}/Machines";
+        XDG_BOOKS_DIR = "${config.home.homeDirectory}/Books";
+        XDG_WALLPAPERS_DIR = "${config.home.homeDirectory}/Pictures/wallpapers";
         XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/screenshots";
+        XDG_RECORDS_DIR = "${config.home.homeDirectory}/Videos/records";
       };
     };
   };

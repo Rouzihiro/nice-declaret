@@ -12,6 +12,7 @@ in {
     "${systemDir}/hardware/audio.nix"
     "${systemDir}/hardware/bluetooth.nix"
     "${systemDir}/hardware/network.nix"
+    # "${systemDir}/hardware/nvidia.nix"
     "${systemDir}/hardware/opengl.nix"
     "${systemDir}/hardware/timezone.nix"
     "${systemDir}/hardware/zram.nix"
@@ -21,7 +22,9 @@ in {
 
     # software
     "${systemDir}/software/all-installing-apps.nix"
-    "${systemDir}/software/login-sddm.nix"
+    # "${systemDir}/software/login-sddm.nix"
+    # "${systemDir}/software/login-lightdm.nix"
+    "${systemDir}/software/login-gdm.nix"
     "${systemDir}/software/desktop-i3wm.nix"
     "${systemDir}/software/app-vm.nix"
   ];
@@ -77,6 +80,7 @@ in {
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
+  services.xserver.displayManager.startx.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs.config.allowUnfree = true;

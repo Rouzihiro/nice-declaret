@@ -2,7 +2,7 @@
   # ---- SYSTEM SETTINGS ---- #
   system = {
     system = "x86_64-linux"; # system arch
-    hostname = "lala"; # hostname
+    hostname = "desktop"; # hostname
     host = "desktop"; # select a host defined from my hosts directory
     timezone = "Asia/Riyadh"; # select timezone
     locale = "en_US.UTF-8"; # select locale

@@ -2,6 +2,9 @@
 set $super Mod4
 set $alt Mod1
 
+
+floating_maximum_size 1000 x 700
+
 # set font
 font pango:Ionicons 7, Poppins Regular 7
 
@@ -9,8 +12,9 @@ font pango:Ionicons 7, Poppins Regular 7
 floating_modifier $super
 
 # autostart
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id waypaper --restore
 exec --no-startup-id picom 
+
 
 # start a terminal
 bindsym $super+Return exec kitty 
@@ -49,6 +53,16 @@ bindsym $super+Shift+l move right
 
 # change split direction for already opened windows
 bindsym $super+v layout toggle split
+
+
+
+# split vertically 
+bindsym $super+i splitv
+
+# split horrizontally 
+bindsym $super+o splith
+
+bindsym $super+u sticky toggle
 
 # enter fullscreen mode for the focused container
 bindsym $super+f fullscreen toggle
@@ -106,7 +120,7 @@ client.background #263640
 # window rules, you can find the window class using xprop
 for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] floating enable
 for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] focus
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 0
 hide_edge_borders smart
-gaps inner 12
+gaps inner 22
 smart_gaps on

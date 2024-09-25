@@ -14,7 +14,7 @@
     v = "nvim";
     sv = "sudo nvim";
     cat = "bat -p";
-    system-update = "sudo nixos-rebuild switch --flake ${mySettings.user.dotfilesDir} --impure";
+    system-update = "sudo nixos-rebuild switch --flake ${mySettings.user.dotfilesDir}#${mySettings.system.hostname} --impure";
     user-update = "home-manager switch --flake ${mySettings.user.dotfilesDir} --impure";
     system-clean = "sudo nix-collect-garbage -d; sudo rm -rf /etc/nixos; sudo cp -r ${mySettings.user.dotfilesDir} /etc/nixos; sudo nixos-rebuild boot --impure";
   };
