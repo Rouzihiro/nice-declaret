@@ -46,6 +46,7 @@ in {
     # ============> APPS
     pavucontrol
     obs-studio
+    obsidian
     discord
     brave
     gimp
