@@ -2,9 +2,9 @@
     mySettings,
     ...
 }: let
-    conf = "desktop-i3wm";
+    conf = "notification-dunst";
     src = "src";
-    dir = "i3";
+    dir = "dunst";
 in {
     home.activation.${conf} = ''
         rm -rf ${mySettings.configDir}/${dir}

@@ -2,9 +2,9 @@
     mySettings,
     ...
 }: let
-    conf = "desktop-i3wm";
-    src = "src";
-    dir = "i3";
+    conf = "bar-polybar";
+    src = "polybar_floating_allblack";
+    dir = "polybar";
 in {
     home.activation.${conf} = ''
         rm -rf ${mySettings.configDir}/${dir}

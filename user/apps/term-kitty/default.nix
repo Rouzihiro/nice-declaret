@@ -1,12 +1,21 @@
 {
-    lib,
     mySettings,
     ...
-}:
-{
+}: let
+    conf = "term-kitty";
+    src = "src";
+    dir = "kitty";
+in {
+    home.activation.${conf} = ''
+        rm -rf ${mySettings.configDir}/${dir}
 
-    home.file."${mySettings.configDir}/kitty" = {
-        source = "${mySettings.userDir}/apps/term-kitty/src";
-        recursive = true;
-    };
+        echo ""
+        echo "******* ⏳ start copy ${dir}"
+
+        cp -r ${mySettings.userDir}/apps/${conf}/${src} \
+              ${mySettings.configDir}/${dir}
+
+        echo "******* 🥳 end in this path ${mySettings.configDir}/${dir}"
+        echo ""
+    '';
 }

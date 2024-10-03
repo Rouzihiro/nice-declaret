@@ -12,7 +12,10 @@ in {
 
   imports = [
    "${userDir}/apps/desktop-i3wm"
+   "${userDir}/apps/bar-polybar"
+   "${userDir}/apps/notification-dunst"
    "${userDir}/apps/app-picom"
+   "${userDir}/apps/app-rofi"
    "${userDir}/apps/editor-nvim"
    "${userDir}/apps/shell-lf"
    "${userDir}/apps/shell-zsh"
@@ -42,6 +45,14 @@ in {
     pkg-config
     feh
     xorg.xinit
+    scrcpy
+    warpd
+    dunst
+    playerctl
+    brightnessctl
+    light
+    xwinwrap
+    ffmpeg
 
     # ============> APPS
     pavucontrol
@@ -49,6 +60,7 @@ in {
     obsidian
     discord
     brave
+    google-chrome
     gimp
     gparted
     zed-editor
@@ -57,6 +69,14 @@ in {
     waypaper
     wireshark
     mission-center
+    ciscoPacketTracer8
+    zathura
+    pcmanfm
+    lxqt.lxqt-policykit
+
+
+    # bar 
+    polybar
 
     # games
     superTuxKart

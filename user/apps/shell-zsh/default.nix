@@ -27,7 +27,6 @@ in {
 
         clear
         nerdfetch
-        echo ""
     '';
     shellAliases = myAliases;
     dotDir = ".config/zsh";

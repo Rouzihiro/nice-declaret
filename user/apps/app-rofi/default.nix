@@ -2,9 +2,9 @@
     mySettings,
     ...
 }: let
-    conf = "desktop-i3wm";
+    conf = "app-rofi";
     src = "src";
-    dir = "i3";
+    dir = "rofi";
 in {
     home.activation.${conf} = ''
         rm -rf ${mySettings.configDir}/${dir}
