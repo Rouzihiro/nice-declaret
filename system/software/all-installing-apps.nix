@@ -39,6 +39,7 @@
 
     #-- C/C++
     pkgs.gcc
+    pkgs.clang
 
     #--- bun
     pkgs.bun
@@ -51,6 +52,22 @@
     pkgs.python3
     pkgs.python311Packages.pip
 
+    # rust
+    pkgs.rustup
+
+    # java
+    pkgs.openjdk8-bootstrap
+    # jdk8_headless
+    # jre8
+    pkgs.javaPackages.openjfx11
+
+    # go
+    pkgs.libcap
+    pkgs.go
+
+    pkgs.gofumpt
+    pkgs.goimports-reviser
+    pkgs.golines
     #=======================
   ];
 }

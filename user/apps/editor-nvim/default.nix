@@ -3,7 +3,7 @@
     ...
 }: let
     conf = "editor-nvim";
-    src = "waleed";
+    src = "nvchad";
     dir = "nvim";
 in {
     home.activation.${conf} = ''

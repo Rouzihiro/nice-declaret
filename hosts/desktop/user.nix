@@ -24,6 +24,8 @@ in {
 
    "${userDir}/style/font.nix"
    "${userDir}/style/gtk.nix"
+
+   ../hack/user.nix
   ];
 
   home.packages = with pkgs; [
@@ -53,6 +55,7 @@ in {
     light
     xwinwrap
     ffmpeg
+    tty-clock
 
     # ============> APPS
     pavucontrol
@@ -73,6 +76,9 @@ in {
     zathura
     pcmanfm
     lxqt.lxqt-policykit
+    libreoffice-qt-fresh
+    anki-bin
+    gnome.gnome-clocks
 
 
     # bar 
@@ -83,19 +89,6 @@ in {
 
     # ============> NETWORKING
     networkmanagerapplet
-
-    # ============> LANGUAGE
-    # rust
-    rustup
-
-    # java
-    openjdk8-bootstrap
-    # jdk8_headless
-    # jre8
-    javaPackages.openjfx11
-
-    # C / C++
-    clang
   ];
 
   services.syncthing.enable = true;
