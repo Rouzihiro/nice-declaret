@@ -78,7 +78,7 @@ in {
     lxqt.lxqt-policykit
     libreoffice-qt-fresh
     anki-bin
-    gnome.gnome-clocks
+    gnome-clocks
 
 
     # bar 

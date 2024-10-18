@@ -54,12 +54,14 @@
 
     # rust
     pkgs.rustup
+    # pkgs.rust-analyzer
 
     # java
     pkgs.openjdk8-bootstrap
     # jdk8_headless
     # jre8
     pkgs.javaPackages.openjfx11
+    pkgs.jdt-language-server
 
     # go
     pkgs.libcap
@@ -68,6 +70,11 @@
     pkgs.gofumpt
     pkgs.goimports-reviser
     pkgs.golines
+
+    # lua
+    pkgs.lua
+    pkgs.lua-language-server
+    pkgs.luajitPackages.luarocks
     #=======================
   ];
 }
