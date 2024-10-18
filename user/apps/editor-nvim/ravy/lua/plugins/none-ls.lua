@@ -18,7 +18,6 @@ return {
                 null_ls.builtins.formatting.gofumpt, -- go
                 null_ls.builtins.formatting.goimports_reviser, -- go 
                 null_ls.builtins.formatting.golines, -- go 
-
             },
             -- on_attach = function(client, bufnr)
             --     if client.supports_method("textDocument/formatting") then
