@@ -12,5 +12,6 @@
     pkgs.udev-gothic-nf
 
     pkgs.nerdfonts
+    pkgs.monocraft
   ];
 }

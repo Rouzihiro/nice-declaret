@@ -9,6 +9,24 @@ return {
 			'ahmedkhalf/project.nvim',
 		},
 		config = function()
+			require('telescope').setup({
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown(),
+					},
+				},
+				defaults = require("telescope.themes").get_ivy({
+					layout_config = {
+						height = 20
+					},
+					file_ignore_patterns = {
+						".env"
+					},
+					buffer_previewer_maker = truncate_large_files
+				}),
+			})
+
+
 			require('project_nvim').setup {
 				detection_methods = { "lsp", "pattern" },
 				patterns = { ".git", "Makefile", "package.json" },

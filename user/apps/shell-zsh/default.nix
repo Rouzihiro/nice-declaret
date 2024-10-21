@@ -6,6 +6,7 @@
 let
   myAliases = {
     g = "cd $(fd -t d --full-path . $HOME | fzf )";
+    gh = "cd $(fd -H -t d --full-path . $HOME | fzf )";
     c = "clear";
     t = "tmux";
     ls = "exa --icons";

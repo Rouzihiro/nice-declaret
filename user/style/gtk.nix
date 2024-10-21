@@ -5,16 +5,16 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "oomox-gruvbox-dark";
-      package = pkgs.gruvbox-dark-icons-gtk;
+      name = "Gruvbox Plus Dark";
+      package = pkgs.gruvbox-plus-icons;
     };
     cursorTheme = {
       name = "Banana";
       package = pkgs.banana-cursor;
     };
     theme = {
-      package = pkgs.adw-gtk3;
-      name = "adw-gtk3";
+      package = pkgs.gruvbox-gtk-theme;
+      name = "Gruvbox Dark";
     };
   };
 
