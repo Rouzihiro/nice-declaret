@@ -1,31 +1,32 @@
-{
-  config,
-  pkgs,
-  inputs,
-  mySettings,
-  ...
-}: let
+{ config
+, pkgs
+, inputs
+, mySettings
+, ...
+}:
+let
   userDir = mySettings.userDir;
-in {
+in
+{
   home.username = mySettings.user.name;
   home.homeDirectory = "/home/${mySettings.user.name}";
 
   imports = [
-   "${userDir}/apps/desktop-i3wm"
-   "${userDir}/apps/bar-polybar"
-   "${userDir}/apps/notification-dunst"
-   "${userDir}/apps/app-picom"
-   "${userDir}/apps/app-rofi"
-   "${userDir}/apps/editor-nvim"
-   "${userDir}/apps/shell-lf"
-   "${userDir}/apps/shell-zsh"
-   "${userDir}/apps/shell-tmux"
-   "${userDir}/apps/term-kitty"
+    "${userDir}/apps/desktop-i3wm"
+    "${userDir}/apps/bar-polybar"
+    "${userDir}/apps/notification-dunst"
+    "${userDir}/apps/app-picom"
+    "${userDir}/apps/app-rofi"
+    "${userDir}/apps/editor-nvim"
+    "${userDir}/apps/shell-lf"
+    "${userDir}/apps/shell-zsh"
+    "${userDir}/apps/shell-tmux"
+    "${userDir}/apps/term-kitty"
 
-   "${userDir}/style/font.nix"
-   "${userDir}/style/gtk.nix"
+    "${userDir}/style/font.nix"
+    "${userDir}/style/gtk.nix"
 
-   ../hack/user.nix
+    ../hack/user.nix
   ];
 
   home.packages = with pkgs; [
@@ -41,6 +42,7 @@ in {
     gromit-mpx
     vlc
     fzf
+    fd
     picom
     flameshot
     rofi
@@ -79,6 +81,8 @@ in {
     libreoffice-qt-fresh
     anki-bin
     gnome-clocks
+    screenkey
+    lxappearance
 
 
     # bar 
@@ -129,6 +133,7 @@ in {
       "x-scheme-handler/unknown" = "org.${mySettings.user.browser}.${mySettings.user.browser}.desktop";
     };
   };
+
 
   programs.git = {
     enable = true;

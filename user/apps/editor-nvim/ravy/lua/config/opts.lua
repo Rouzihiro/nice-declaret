@@ -60,7 +60,7 @@ vim.opt.updatetime = 300          -- Faster completion (for plugins like gitgutt
 vim.opt.mouse = "a"               -- Enable mouse support
 
 -- Text Wrapping
-vim.opt.wrap = true               -- Enable line wrapping
+vim.opt.wrap = false              -- Enable line wrapping
 vim.opt.linebreak = true          -- Wrap lines at words, not mid-word
 
 -- Performance Optimization

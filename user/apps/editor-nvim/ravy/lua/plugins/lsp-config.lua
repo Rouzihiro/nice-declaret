@@ -14,7 +14,7 @@ return {
 		lazy = false,
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ts_ls", "gopls", "jdtls", "html", "cssls" }
+				ensure_installed = { "lua_ls", "ts_ls", "gopls", "jdtls", "html", "cssls", "nil_ls" }
 			})
 		end,
 	},
@@ -40,13 +40,10 @@ return {
 				cmd = { "lua-language-server" },
 				filetypes = { "lua" },
 			})
-
-
 			-- TS/JS
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
-
 			-- GO
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
@@ -63,7 +60,6 @@ return {
 					},
 				},
 			})
-
 			-- JAVA
 			lspconfig.jdtls.setup({
 				capabilities = capabilities,
@@ -71,6 +67,7 @@ return {
 				root_dir = util.root_pattern("gradlew", "mvnw", ".git"),
 				filetypes = { "java" },
 			})
+			-- RUST
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 				cmd = { "rust-analyzer" },
@@ -83,6 +80,10 @@ return {
 						},
 					},
 				},
+			})
+			-- NIX
+			lspconfig.nil_ls.setup({
+				capabilities = capabilities,
 			})
 		end
 	},

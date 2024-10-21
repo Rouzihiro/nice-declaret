@@ -369,6 +369,7 @@ bindsym XF86AudioPrev exec playerctl previous
 exec xrandr -s 1920x1080 -r 60
 exec xset s -dpms
 exec xset s off
+exec --no-startup-id screenkey
 
 
 

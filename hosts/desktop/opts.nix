@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   # ---- SYSTEM SETTINGS ---- #
   system = {
     system = "x86_64-linux"; # system arch
@@ -44,6 +45,7 @@
   userDir = "${user.dotfilesDir}/user";
   scriptsDir = "${userDir}/scripts";
   configDir = "/home/${user.name}/.config";
-in {
-    inherit system user systemDir userDir scriptsDir configDir;
+in
+{
+  inherit system user systemDir userDir scriptsDir configDir;
 }

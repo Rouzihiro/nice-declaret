@@ -1,17 +1,29 @@
-{
-    pkgs,
-    lib,
-    mySettings,
-    ...
+{ pkgs
+, ...
 }:
 {
-    gtk.cursorTheme.package = pkgs.apple-cursor;
-    gtk.cursorTheme.name = "macOS-BigSUr-White";
-    #gtk.cursorTheme.size = 16;
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "oomox-gruvbox-dark";
+      package = pkgs.gruvbox-dark-icons-gtk;
+    };
+    cursorTheme = {
+      name = "Banana";
+      package = pkgs.banana-cursor;
+    };
+    theme = {
+      package = pkgs.adw-gtk3;
+      name = "adw-gtk3";
+    };
+  };
 
-    gtk.theme.package = lib.mkDefault pkgs.gruvbox-dark-gtk;
-    gtk.theme.name = lib.mkDefault "gruvbox-dark";
-
-    gtk.iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
-    gtk.iconTheme.name = "oomox-gruvbox-dark";
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
+  };
 }

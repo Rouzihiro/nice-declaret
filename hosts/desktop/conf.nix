@@ -1,11 +1,11 @@
-{
-  pkgs,
-  mySettings,
-  config,
-  ...
-}: let
+{ pkgs
+, mySettings
+, ...
+}:
+let
   systemDir = mySettings.systemDir;
-in {
+in
+{
   imports = [
     # hardware
     "${systemDir}/hardware/hardware.nix"
@@ -33,26 +33,33 @@ in {
     kernelPackages = pkgs.linuxPackages_latest; # Kernel
 
     kernelParams = [
-        "systemd.mask=systemd-vconsole-setup.service"
-        "systemd.mask=dev-tpmrm0.device" # this is to mask that stupid 1.5 mins systemd bug
-        "nowatchdog"
-        "modprobe.blacklist=sp5100_tco" # watchdog for AMD
-        "modprobe.blacklist=ITCO_wdt" # watchdog for Intel
+      "systemd.mask=systemd-vconsole-setup.service"
+      "systemd.mask=dev-tpmrm0.device" # this is to mask that stupid 1.5 mins systemd bug
+      "nowatchdog"
+      "modprobe.blacklist=sp5100_tco" # watchdog for AMD
+      "modprobe.blacklist=ITCO_wdt" # watchdog for Intel
     ];
 
     # This is for OBS Virtual Can Support
     kernelModules = [ "v412loopback" ];
 
     loader.efi.canTouchEfiVariables = true;
-    loader.systemd-boot.enable= true;
-    
+    loader.systemd-boot.enable = true;
+
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
     initrd.kernelModules = [ ];
- };
+  };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  xdg.portal.config.common.default = "*";
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+      ];
+      config.common.default = "*";
+    };
+  };
 
   services.flatpak.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -62,7 +69,7 @@ in {
   users.users.${mySettings.user.name} = {
     isNormalUser = true;
     description = mySettings.user.name;
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = [ "wheel" "networkmanager" ];
     initialPassword = "1235";
     shell = pkgs.zsh;
   };
@@ -82,6 +89,6 @@ in {
   services.tumbler.enable = true; # Thumbnail support for images
   services.xserver.displayManager.startx.enable = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 }
