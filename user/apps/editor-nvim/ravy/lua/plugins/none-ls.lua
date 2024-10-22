@@ -3,7 +3,6 @@
 
 return {
 	"nvimtools/none-ls.nvim",
-	enable = false,
 	dependencies = {
 		"nvimtools/none-ls-extras.nvim",
 	},
@@ -19,23 +18,23 @@ return {
 				null_ls.builtins.formatting.gofumpt,           -- go
 				null_ls.builtins.formatting.goimports_reviser, -- go
 				null_ls.builtins.formatting.golines,           -- go
-				null_ls.builtins.formatting.nixpkgs_fmt,           -- go
+				null_ls.builtins.formatting.nixpkgs_fmt,       -- nix 
 			},
-			-- on_attach = function(client, bufnr)
-			--     if client.supports_method("textDocument/formatting") then
-			--         vim.api.nvim_clear_autocmds({
-			--             group = augroup,
-			--             buffer = bufnr,
-			--         })
-			--         vim.api.nvim_create_autocmd("BufWritePre", {
-			--             group = augroup,
-			--             buffer = bufnr,
-			--             callback = function()
-			--                 vim.lsp.buf.format({ bufnr = bufnr })
-			--             end,
-			--         })
-			--     end
-			-- end,
+			on_attach = function(client, bufnr)
+			    if client.supports_method("textDocument/formatting") then
+			        vim.api.nvim_clear_autocmds({
+			            group = augroup,
+			            buffer = bufnr,
+			        })
+			        vim.api.nvim_create_autocmd("BufWritePre", {
+			            group = augroup,
+			            buffer = bufnr,
+			            callback = function()
+			                vim.lsp.buf.format({ bufnr = bufnr })
+			            end,
+			        })
+			    end
+			end,
 		})
 
 		vim.keymap.set("n", "gf", vim.lsp.buf.format, { desc = "file format" })

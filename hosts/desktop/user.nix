@@ -57,6 +57,7 @@ in
     xwinwrap
     ffmpeg
     tty-clock
+    sqlite
 
     # ============> APPS
     pavucontrol
@@ -82,6 +83,7 @@ in
     gnome-clocks
     screenkey
     lxappearance
+    sqlitebrowser
 
 
     # bar 
