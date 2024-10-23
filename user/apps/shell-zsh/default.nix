@@ -1,13 +1,13 @@
-{ config
-, pkgs
-, mySettings
-, ...
-}:
-let
+{
+  config,
+  mySettings,
+  ...
+}: let
   myAliases = {
     g = "cd $(fd -t d --full-path . $HOME | fzf )";
     gh = "cd $(fd -H -t d --full-path . $HOME | fzf )";
     c = "clear";
+    b = "btop";
     t = "tmux";
     ls = "exa --icons";
     lt = "exa --icons --tree";
@@ -20,18 +20,17 @@ let
     user-update = "home-manager switch --flake ${mySettings.user.dotfilesDir} --impure";
     system-clean = "sudo nix-collect-garbage -d; sudo rm -rf /etc/nixos; sudo cp -r ${mySettings.user.dotfilesDir} /etc/nixos; sudo nixos-rebuild boot --impure";
   };
-in
-{
+in {
   programs.zsh = {
     enable = true;
     initExtra = ''
-      PROMPT="%F{yellow}%n%f%F{red}@%F{blue}%m%f%u:%F{magenta}%~%f %F{green}$%f "
-      [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+          PROMPT="%F{yellow}%n%f%F{red}@%F{blue}%m%f%u:%F{magenta}%~%f %F{green}$%f "
+          [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
 
-        clear
-        nerdfetch
+            clear
+            nerdfetch
 
-		export FZF_DEFAULT_OPTS='--height 50% --layout reverse --border top'
+      export FZF_DEFAULT_OPTS='--height 50% --layout reverse --border top'
     '';
     shellAliases = myAliases;
     dotDir = ".config/zsh";
@@ -60,7 +59,7 @@ in
     zplug = {
       enable = true;
       plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
+        {name = "zsh-users/zsh-autosuggestions";}
       ];
     };
   };

@@ -13,7 +13,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		config = function()
-			require("mason-lspconfig").setup({
+			require("mason-lspconfig").setup({ -- NOTE: this just for install packages in mason!
 				ensure_installed = { "lua_ls", "ts_ls", "gopls", "jdtls", "html", "cssls", "nil_ls" }
 			})
 		end,
@@ -33,13 +33,40 @@ return {
 			vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "LSP references" })
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
 
+			-- NOTE: In the bottom you gona to config you're LSP
 
+			-- NIX
+			lspconfig.nixd.setup({
+				capabilities = capabilities,
+				cmd = { "nixd" },
+				filetypes = { "nix" },
+				settings = {
+					nixd = {
+						expr = {
+							"import <nixpkgs> { }",
+							"import (builtins.getFlake \"github:0xravy/dotfiles\").inputs.nixpkgs { }",
+						},
+					},
+					formatting = {
+						command = { "alejandra" }, -- or nixfmt or nixpkgs-fmt
+					},
+					options = {
+						nixos = {
+							expr = "(builtins.getFlake \"github:0xravy/dotfiles\").nixosConfigurations.desktop.options",
+						},
+						home_manager = {
+							expr = "(builtins.getFlake \"github:0xravy/dotfiles\").nixosConfigurations.desktop.options",
+						},
+					},
+				},
+			})
 			-- LUA
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				cmd = { "lua-language-server" },
 				filetypes = { "lua" },
 			})
+
 			-- TS/JS
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
@@ -80,10 +107,6 @@ return {
 						},
 					},
 				},
-			})
-			-- NIX
-			lspconfig.nil_ls.setup({
-				capabilities = capabilities,
 			})
 		end
 	},

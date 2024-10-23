@@ -1,11 +1,11 @@
-{ pkgs
-, mySettings
-, ...
-}:
-let
-  systemDir = mySettings.systemDir;
-in
 {
+  pkgs,
+  mySettings,
+  inputs,
+  ...
+}: let
+  systemDir = mySettings.systemDir;
+in {
   imports = [
     # hardware
     "${systemDir}/hardware/hardware.nix"
@@ -41,13 +41,13 @@ in
     ];
 
     # This is for OBS Virtual Can Support
-    kernelModules = [ "v412loopback" ];
+    kernelModules = ["v412loopback"];
 
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.enable = true;
 
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-    initrd.kernelModules = [ ];
+    initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+    initrd.kernelModules = [];
   };
 
   xdg = {
@@ -63,13 +63,13 @@ in
 
   services.flatpak.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [zsh];
   programs.zsh.enable = true;
 
   users.users.${mySettings.user.name} = {
     isNormalUser = true;
     description = mySettings.user.name;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = ["wheel" "networkmanager"];
     initialPassword = "1235";
     shell = pkgs.zsh;
   };
@@ -81,7 +81,7 @@ in
     VISUAL = mySettings.user.editor;
   };
 
-  # environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   system.stateVersion = "24.11";
 
@@ -89,6 +89,6 @@ in
   services.tumbler.enable = true; # Thumbnail support for images
   services.xserver.displayManager.startx.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs.config.allowUnfree = true;
 }

@@ -1,11 +1,8 @@
-{ pkgs
-, ...
-}:
-{
+{pkgs, ...}: {
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Gruvbox Plus Dark";
+      name = "Gruvbox-Plus-Dark";
       package = pkgs.gruvbox-plus-icons;
     };
     cursorTheme = {
@@ -14,7 +11,7 @@
     };
     theme = {
       package = pkgs.gruvbox-gtk-theme;
-      name = "Gruvbox Dark";
+      name = "Gruvbox-Dark";
     };
   };
 

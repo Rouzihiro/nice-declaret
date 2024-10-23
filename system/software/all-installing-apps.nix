@@ -4,16 +4,15 @@
   ...
 }: {
   environment.systemPackages = [
-    #=======================
     pkgs.home-manager
 
-    # fonts
+    # NOTE: FONTS
     pkgs.nerdfonts
 
-    # browsers
+    # NOTE: BROWSERS
     pkgs.firefox
 
-    # myApps
+    # NOTE: APPS
     pkgs.neovim
     pkgs.lf
     pkgs.eza
@@ -37,44 +36,57 @@
     pkgs.xclip
     pkgs.light
 
-    #-- C/C++
-    pkgs.gcc
-    pkgs.clang
+    # NOTE: PROGRAMMING LNAGUAGES
 
-    #--- bun
-    pkgs.bun
+    # {?} =====> NIX
 
-    #-- nodejs
-    pkgs.nodejs_22
-    pkgs.nodePackages.live-server
+    pkgs.nixd # NIX lsp
+    pkgs.alejandra # NIX formatter
 
-    #--- python
-    pkgs.python3
-    pkgs.python311Packages.pip
+    # {?} =====> C/C++
 
-    # rust
-    pkgs.rustup
-    # pkgs.rust-analyzer
+    pkgs.gcc # C compiler
+    pkgs.clang # C++ compiler
 
-    # java
+    # {?} =====> bun
+
+    pkgs.bun # JS compiler
+
+    # {?} =====> nodejs
+
+    pkgs.nodejs_22 # NodeJS compiler
+    pkgs.nodePackages.live-server # liveserver package
+
+    # {?} =====> python
+
+    pkgs.python3 # PY compiler
+    pkgs.python311Packages.pip # PY package manager
+
+    # {?} =====> rust
+
+    pkgs.rustup # RUST tolls
+    pkgs.rust-analyzer # RUST LSP
+
+    # {?} =====> java
+
     pkgs.openjdk8-bootstrap
     # jdk8_headless
     # jre8
     pkgs.javaPackages.openjfx11
     pkgs.jdt-language-server
 
-    # go
+    # {?} =====> go
+
     pkgs.libcap
-    pkgs.go
+    pkgs.go # GO compiler
+    pkgs.gofumpt # GO formatter
+    pkgs.goimports-reviser # GO formatter
+    pkgs.golines # GO formatter
 
-    pkgs.gofumpt
-    pkgs.goimports-reviser
-    pkgs.golines
+    # {?} =====> lua
 
-    # lua
-    pkgs.lua
-    pkgs.lua-language-server
-    pkgs.luajitPackages.luarocks
-    #=======================
+    pkgs.lua # LUA compiler
+    pkgs.lua-language-server # LUA lsp
+    pkgs.luajitPackages.luarocks # LUA package manager
   ];
 }

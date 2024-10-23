@@ -1,12 +1,11 @@
-{ config
-, pkgs
-, mySettings
-, ...
-}:
-let
-  userDir = mySettings.userDir;
-in
 {
+  config,
+  pkgs,
+  mySettings,
+  ...
+}: let
+  userDir = mySettings.userDir;
+in {
   home.username = mySettings.user.name;
   home.homeDirectory = "/home/${mySettings.user.name}";
 
@@ -85,8 +84,7 @@ in
     lxappearance
     sqlitebrowser
 
-
-    # bar 
+    # bar
     polybar
 
     # games
@@ -134,7 +132,6 @@ in
       "x-scheme-handler/unknown" = "org.${mySettings.user.browser}.${mySettings.user.browser}.desktop";
     };
   };
-
 
   programs.git = {
     enable = true;
