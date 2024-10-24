@@ -57,6 +57,7 @@ in {
     ffmpeg
     tty-clock
     sqlite
+    cmatrix
 
     # ============> APPS
     pavucontrol
@@ -83,6 +84,7 @@ in {
     screenkey
     lxappearance
     sqlitebrowser
+    cool-retro-term
 
     # bar
     polybar

@@ -13,6 +13,7 @@
     pkgs.firefox
 
     # NOTE: APPS
+    pkgs.util-linux
     pkgs.neovim
     pkgs.lf
     pkgs.eza
@@ -69,10 +70,10 @@
 
     # {?} =====> java
 
-    pkgs.openjdk8-bootstrap
+    pkgs.openjdk22
     # jdk8_headless
     # jre8
-    pkgs.javaPackages.openjfx11
+    pkgs.javaPackages.openjfx22
     pkgs.jdt-language-server
 
     # {?} =====> go

@@ -12,7 +12,7 @@
 ####################################
 focus_follows_mouse no
 focus_wrapping no
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 title_align center
 
 
@@ -50,8 +50,8 @@ hide_edge_borders both
 #         Gaps
 ###############################
 # Set inner/outer gaps
-gaps inner 10
-gaps outer 0
+gaps inner 30
+gaps outer 30
 
 
 ##############################
