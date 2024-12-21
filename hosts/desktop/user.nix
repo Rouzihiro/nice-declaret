@@ -10,16 +10,9 @@ in {
   home.homeDirectory = "/home/${mySettings.user.name}";
 
   imports = [
-    "${userDir}/apps/desktop-i3wm"
     "${userDir}/apps/bar-polybar"
-    "${userDir}/apps/notification-dunst"
-    "${userDir}/apps/app-picom"
-    "${userDir}/apps/app-rofi"
-    "${userDir}/apps/editor-nvim"
     "${userDir}/apps/shell-lf"
     "${userDir}/apps/shell-zsh"
-    "${userDir}/apps/shell-tmux"
-    "${userDir}/apps/term-kitty"
 
     "${userDir}/style/font.nix"
     "${userDir}/style/gtk.nix"
@@ -47,6 +40,8 @@ in {
     pkg-config
     feh
     xorg.xinit
+    xorg.xrandr
+    arandr
     scrcpy
     warpd
     dunst
@@ -58,6 +53,9 @@ in {
     tty-clock
     sqlite
     cmatrix
+    hollywood
+    stow
+    lazysql
 
     # ============> APPS
     pavucontrol
@@ -85,6 +83,8 @@ in {
     lxappearance
     sqlitebrowser
     cool-retro-term
+    appimage-run
+    gns3-gui
 
     # bar
     polybar
@@ -148,7 +148,7 @@ in {
     BROWSER = mySettings.user.browser;
   };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   programs.home-manager.enable = true;
 }

@@ -12,6 +12,9 @@ return {
 		config = function()
 			require("oil").setup()
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+			vim.keymap.set("n", "<leader>oh", function()
+				require("oil").toggle_hidden()
+			end, { desc = "Toggle hidden files in oil.nvim" })
 		end
 	},
 }

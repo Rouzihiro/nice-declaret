@@ -60,6 +60,7 @@ return {
 					},
 				},
 			})
+
 			-- LUA
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -71,6 +72,7 @@ return {
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
+			--
 			-- GO
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
@@ -87,6 +89,7 @@ return {
 					},
 				},
 			})
+
 			-- JAVA
 			lspconfig.jdtls.setup({
 				capabilities = capabilities,
@@ -94,6 +97,7 @@ return {
 				root_dir = util.root_pattern("gradlew", "mvnw", ".git"),
 				filetypes = { "java" },
 			})
+
 			-- RUST
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
@@ -107,6 +111,24 @@ return {
 						},
 					},
 				},
+			})
+
+			-- Svelte LSP setup
+			lspconfig.svelte.setup({
+				cmd = { "svelteserver", "--stdio" },
+				filetypes = { "svelte" },
+				root_dir = lspconfig.util.root_pattern("package.json", ".git"),
+				settings = {
+					svelte = {
+						plugin = {
+							svelte = {
+								compilerWarnings = {
+									enable = true
+								}
+							}
+						}
+					}
+				}
 			})
 		end
 	},

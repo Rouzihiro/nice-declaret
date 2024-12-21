@@ -24,21 +24,23 @@ in {
     "${systemDir}/software/all-installing-apps.nix"
     # "${systemDir}/software/login-sddm.nix"
     # "${systemDir}/software/login-lightdm.nix"
-    "${systemDir}/software/login-gdm.nix"
+    "${systemDir}/software/login-sddm.nix"
     "${systemDir}/software/desktop-i3wm.nix"
     "${systemDir}/software/app-vm.nix"
+
+    ../game/conf.nix
   ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest; # Kernel
 
-    kernelParams = [
-      "systemd.mask=systemd-vconsole-setup.service"
-      "systemd.mask=dev-tpmrm0.device" # this is to mask that stupid 1.5 mins systemd bug
-      "nowatchdog"
-      "modprobe.blacklist=sp5100_tco" # watchdog for AMD
-      "modprobe.blacklist=ITCO_wdt" # watchdog for Intel
-    ];
+    # kernelParams = [
+    #   "systemd.mask=systemd-vconsole-setup.service"
+    #   "systemd.mask=dev-tpmrm0.device" # this is to mask that stupid 1.5 mins systemd bug
+    #   "nowatchdog"
+    #   "modprobe.blacklist=sp5100_tco" # watchdog for AMD
+    #   "modprobe.blacklist=ITCO_wdt" # watchdog for Intel
+    # ];
 
     # This is for OBS Virtual Can Support
     kernelModules = ["v412loopback"];

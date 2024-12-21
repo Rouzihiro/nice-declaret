@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [
+    matrix-gtk-theme
+  ];
+
   gtk = {
     enable = true;
     iconTheme = {
@@ -10,8 +14,8 @@
       package = pkgs.banana-cursor;
     };
     theme = {
-      package = pkgs.gruvbox-gtk-theme;
       name = "Gruvbox-Dark";
+      package = pkgs.gruvbox-gtk-theme;
     };
   };
 
