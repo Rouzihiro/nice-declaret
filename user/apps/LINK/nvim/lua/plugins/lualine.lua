@@ -1,6 +1,3 @@
--- this plugin for the bottom bar
-
-
 return {
 	{
 		'nvim-lualine/lualine.nvim',
@@ -8,18 +5,20 @@ return {
 		config = function()
 			require('lualine').setup({
 				options = {
-					theme = 'auto', -- Keep your current theme or set it here
-					-- other Lualine configuration options...
+					theme = 'auto', -- Or your preferred theme
 				}
 			})
+
+			-- Simulate opacity by using a slightly translucent-like color
 			vim.cmd([[
-				highlight! LualineNormal guibg=NONE ctermbg=NONE
-				highlight! LualineInsert guibg=NONE ctermbg=NONE
-				highlight! LualineVisual guibg=NONE ctermbg=NONE
-				highlight! LualineReplace guibg=NONE ctermbg=NONE
-				highlight! LualineCommand guibg=NONE ctermbg=NONE
-				highlight! LualineInactive guibg=NONE ctermbg=NONE
+				highlight! LualineNormal guibg=#1e1e1e ctermbg=234
+				highlight! LualineInsert guibg=#1e1e1e ctermbg=234
+				highlight! LualineVisual guibg=#1e1e1e ctermbg=234
+				highlight! LualineReplace guibg=#1e1e1e ctermbg=234
+				highlight! LualineCommand guibg=#1e1e1e ctermbg=234
+				highlight! LualineInactive guibg=#1e1e1e ctermbg=234
 			]])
 		end
 	}
 }
+

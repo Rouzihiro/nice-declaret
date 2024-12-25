@@ -24,11 +24,10 @@ in {
   programs.zsh = {
     enable = true;
     initExtra = ''
-                   PROMPT="%F{yellow}%n%f%F{red}@%F{blue}%m%f%u:%F{magenta}%~%f %F{green}$%f "
-                   [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+      PROMPT="%F{yellow}%n%f%F{red}@%F{blue}%m%f%u:%F{magenta}%~%f %F{green}$%f "
+      [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
 
                      clear
-
       echo """
       ⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⠔⠉⠒⠤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠺⠤⠔⠁⠀⠀⢀⣀⠀⠀⠀⠑⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -52,7 +51,7 @@ in {
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠄⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⠀⠈⠀⠀⠀⠀⠀⠀⠀
       ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       """
-            export FZF_DEFAULT_OPTS='--height 50% --layout reverse --border top'
+      export FZF_DEFAULT_OPTS='--height 50% --layout reverse --border top'
     '';
     shellAliases = myAliases;
     dotDir = ".config/zsh";

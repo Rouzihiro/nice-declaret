@@ -34,6 +34,7 @@
     pkgs.xclip
     pkgs.light
     pkgs.gns3-server
+    pkgs.postman
 
     # NOTE: PROGRAMMING LNAGUAGES
 
