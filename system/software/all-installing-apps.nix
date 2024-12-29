@@ -20,6 +20,7 @@
     pkgs.git
     pkgs.mpd
     pkgs.mpv
+    pkgs.xwinwrap
     pkgs.fuzzel
     pkgs.tofi
     pkgs.tmux

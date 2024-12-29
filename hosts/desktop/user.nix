@@ -56,6 +56,8 @@ in {
     hollywood
     stow
     lazysql
+    zoxide
+    jq
 
     # ============> APPS
     pavucontrol
